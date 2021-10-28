@@ -11,17 +11,17 @@ const CollectionDetailPage = () => {
     const route = useRouter();
     const collection = useSelector(state => state.product.collection);
 
-    // useEffect(() => {
-    //     dispatch(productActions.getCollectionById({id: route?.query?.slug}))
-    // },[])
+    useEffect(() => {
+        dispatch(productActions.getCollectionById({id: route?.query?.slug}))
+    },[])
 
     return (
         <CollectionDetail data={collection}/>
     )
 }
 
-CollectionDetailPage.getInitialProps = wrapper.getInitialPageProps(store => ({query}) => {
-    store.dispatch(productActions.getCollectionById({id: query.slug}));
-});
+// CollectionDetailPage.getInitialProps = wrapper.getInitialPageProps(store => ({query}) => {
+//     store.dispatch(productActions.getCollectionById({id: query.slug}));
+// });
 
 export default CollectionDetailPage;

@@ -1,0 +1,2 @@
+NEXT_PUBLIC_PMC_API_GATEWAY_URL=https://localhost:5001/
+NEXT_PUBLIC_APP_MODE=development

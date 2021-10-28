@@ -1,0 +1,11 @@
+.header {
+  background-color: black;
+  [class="dropdown"] {
+    &:hover {
+      [class="dropdown-menu"] {
+        display: block;
+        margin-top: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+@mixin smallScreen {
+    @media screen and (max-width: #{$small-screen}) {
+        @content;
+    }
+}
+
+@mixin tabletScreen {
+    @media screen and (min-width: #{$small-screen}) and (max-width: #{$large-screen}) {
+        @content;
+    }
+}
+
+@mixin button {
+    outline: none;
+    cursor: pointer;
+    &:hover {
+        outline: none;
+    }
+}

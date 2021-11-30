@@ -1,0 +1,68 @@
+@import "../../../assets/scss/global.scss";
+
+.date-field {
+    &:not(:first-child) {
+        margin-top: 1rem;
+    }
+    label {
+        font-size: $font-size-12;
+        line-height: 18px;
+
+        span {
+            margin-left: 3px;
+            color: #f33060;
+        }
+    }
+
+    .group {
+        position: relative;
+        border-bottom: 1px solid #e5e5e5;
+        padding-bottom: 10px;
+        > div {
+            width: 100%;
+        }
+        [class="react-date-picker__wrapper"] {
+            border: none;
+            button {
+                display: none;
+            }
+        }
+        [class="react-date-picker__wrapper"] + span {
+            > div {
+                width: 100%;
+                > div {
+                    width: 100%;
+                }
+            }
+        }
+        .icon-right {
+            position: absolute;
+            // top: 9px;
+            right: 4px;
+            width: 20px;
+            pointer-events: none;
+        }
+    }
+    &.error {
+        label {
+            color: #f33060;
+        }
+
+        input {
+            border-bottom-color: #f33060;
+        }
+
+        .feedback {
+            color: #f33060;
+            font-size: $font-size-12;
+            line-height: 18px;
+            margin-top: 2px;
+        }
+    }
+    [class="react-calendar__month-view__days"] {
+        button {
+            padding-bottom: calc(17 / 413 * 100%);
+            padding-top: calc(17 / 413 * 100%);
+        }
+    }
+}

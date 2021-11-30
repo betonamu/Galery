@@ -1,4 +1,7 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import Link from "next/link";
+
+import {paths} from "../../../constants";
 
 import styles from "./Header.module.scss";
 
@@ -27,10 +30,26 @@ const Header = () => {
                                     </ul>
                                 </div>
                             </li>
+                            <li className="nav-item">
+                                <div className="dropdown cursor-pointer">
+                                    <a className="nav-link dropdown-toggle">
+                                        Collection Management
+                                    </a>
+                                    <ul className="dropdown-menu">
+                                        <Link href={paths.createCollection}>
+                                            <li><a className="dropdown-item" href="#">Create Collection</a></li>
+                                        </Link>
+                                        <li><a className="dropdown-item" href="#">Another action</a></li>
+                                        <li><a className="dropdown-item" href="#">Something else here</a></li>
+                                    </ul>
+                                </div>
+                            </li>
                         </ul>
                     </div>
                     <div>
-                        <a className="nav-link" href="#">Đăng nhập</a>
+                        <Link href={paths.signIn}>
+                            <a className="nav-link" href="#">Đăng nhập</a>
+                        </Link>
                     </div>
                 </div>
             </nav>

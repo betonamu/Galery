@@ -1,6 +1,6 @@
 .header {
   background-color: black;
-  [class="dropdown"] {
+  [class~="dropdown"] {
     &:hover {
       [class="dropdown-menu"] {
         display: block;

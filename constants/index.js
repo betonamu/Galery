@@ -15,4 +15,13 @@ export const storageKeys = {
     CHECK_OTC_DRUG: 'pmc-ecom-check-otc-drugs'
 }
 
+const baseUrl = "/";
+
+export const paths = {
+    signIn : `${baseUrl}accounts/sign-in`,
+    createCollection: `${baseUrl}collections/create`,
+}
+
+export const phoneRegExp = /^(03|05|07|08|09|01[2|6|8|9]){1}([0-9]{8})$/;
+
 export const dateFormat = "DD/MM/YYYY";

@@ -1,0 +1,80 @@
+.pc-button {
+    border: none;
+    outline: none;
+
+    font-size: 17px;
+    line-height: 22px;
+    padding: 15px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    border: 1px solid transparent;
+
+    svg {
+        vertical-align: middle;
+    }
+
+    &.bold {
+        font-weight: bold;
+    }
+
+    &.full-width {
+        width: 100%;
+    }
+
+    &.primary {
+        color: white;
+        background-color: #0065FF;
+        border-color: #0065FF;
+
+        &:disabled {
+            background-color: #4b92ff;
+            border-color: #4b92ff;
+            cursor: default;
+        }
+    }
+
+    &.primary-outline {
+        color: #0065FF;
+        background-color: #F2F6FE;;
+        border-color: #0065FF;
+    }
+
+    &.warning {
+        color: white;
+        background-color: #FEAA48;
+        border-color: #FEAA48;
+    }
+
+    &.warning-outline {
+        color: #FEAA48;
+        background-color: #FEAA4840;
+        border-color: #FEAA48;
+    }
+
+    &.success {
+        color: white;
+        background-color: #5DAC46;
+        border-color: #5DAC46;
+    }
+
+    &.success-outline {
+        color: #5DAC46;
+        background-color: #EBF5EF;
+        border-color: #5DAC46;
+    }
+
+    &.secondary {
+        color: #5E6F88;
+        background-color: #F2F4F5;
+        border-color: #F2F4F5;
+    }
+
+    &.danger {
+        color: white;
+        background-color: #F33060;
+        border-color: #F33060;
+    }
+
+    &.secondary-outline {
+    }
+}

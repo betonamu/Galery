@@ -15,6 +15,18 @@ const apiConfig = {
             method: 'GET',
             headers: baseHeader
         },
+        createCollection:{
+            path: `${xiurenGaleryApiUrl}api/collections/create-collection`,
+            method: 'POST',
+            headers: multipartFormHeader
+        }
+    },
+    model: {
+        getAllModel: {
+            path: `${xiurenGaleryApiUrl}api/model`,
+            method: 'GET',
+            headers: baseHeader
+        },
     }
 }
 

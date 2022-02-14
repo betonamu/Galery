@@ -1,63 +1,87 @@
-import React, {useState, useEffect} from "react";
-import {useDispatch} from "react-redux";
-import ClipLoader from "react-spinners/ClipLoader";
-import ReactImageUploading from "react-images-uploading";
+import React, {useEffect, useState} from "react";
+import ImageUploading from "react-images-uploading";
+import classNames from "classnames";
+import {useField} from "formik";
 
-import {accountActions} from "@redux/actions";
-import apiConfig from "@constants/apiConfig";
-import {sendRequest} from "@utils/api";
-import useAuth from "@hooks/useAuth";
+import CloseIcon from "../../../asstes/icons/close.svg";
 
-import IconPlus44 from "@assets/icons/icon-plus-44.svg";
+import styles from "./UploadFile.module.scss";
 
-import styles from "./AccountDetails.module.scss";
+const UploadImage = ({maxFileUpload = 1, maxFileSize = 10485760, label, ...props}) => {
+    const [field, meta, helpers] = useField(props);
+    const isError = meta.touched && meta.error;
 
-const UploadFileField = ({accountDetail}) => {
+    const [images, setImages] = useState([]);
 
+    const acceptTypes = ["png", "jpg", "jpeg"];
 
-    const onChangeImage = (imageList) => {
-        return new Promise(async resolve => {
-            setLoading(true);
-            const {
-                success,
-                responseData
-            } = await sendRequest(apiConfig.account.uploadAvatar, {avatar: imageList[0]?.file});
-            if (success) {
-                setCurrentAvatar(responseData.data.avatar);
-                dispatch(accountActions.setProfile({data: {...user, avatar: responseData.data.avatar}}));
-            }
-            setLoading(false);
-        });
-    }
+    const onChange = (imageList) => {
+        //set value for form field
+        let value = imageList.map(item => item?.file);
+        helpers?.setValue(value || []);
+
+        setImages(imageList);
+    };
 
     return (
-        <div className={styles.photoUpload}>
-            <ReactImageUploading
-                value={[]}
-                acceptType={["png", "jpeg", "jpg"]}
-                onChange={onChangeImage}
-                maxNumber={1}>
+        <div className={classNames(styles.uploadImageWrapper, {
+            [styles.error]: isError,
+        })}>
+            {label && (
+                <label>
+                    {label}
+                    {props.required && <span>*</span>}
+                </label>
+            )}
+            <ImageUploading
+                {...field}
+                multiple
+                value={images}
+                acceptType={acceptTypes}
+                onChange={onChange}
+                maxNumber={maxFileUpload}
+                maxFileSize={maxFileSize}
+                dataURLKey="data_url">
                 {({
+                      imageList,
                       onImageUpload,
+                      onImageRemove,
+                      isDragging,
+                      dragProps
                   }) => (
-                    <>
-                        {loading
-                            ?
-                            <i>
-                                <ClipLoader/>
-                            </i>
-                            :
-                            <figure>
-                                {(currentAvatar) ? (<img src={currentAvatar} alt="user avatar"/>) : (
-                                    <IconPlus44/>)}
-                            </figure>
+                    // write your building UI
+                    <div className={styles.uploadImage}>
+                        {imageList.map((image, index) => (
+                            <div key={index} className={styles.imageItem}>
+                                <img src={image["data_url"]} alt=""/>
+                                <button onClick={() => onImageRemove(index)}
+                                        className={styles.closeIcon}>
+                                    <CloseIcon/>
+                                </button>
+                            </div>
+                        ))}
+                        {
+                            images.length < maxFileUpload &&
+                            <div style={isDragging ? {color: "red"} : undefined}
+                                 className={classNames(styles.uploadArea, {
+                                     [styles.required]: isError,
+                                     [styles.haveAImage]: imageList.length > 0
+                                 })}
+                                 onClick={onImageUpload}
+                                 {...dragProps}>
+                                Bấm vào để tải ảnh lên
+                                {imageList.length < 1 &&
+                                <p>(định dạng hỗ trợ: .png, .jpg, .jpeg và kích thước tối đa 10MB)</p>}
+                            </div>
                         }
-                        <button onClick={onImageUpload}> Bấm để cập nhật ảnh mới</button>
-                    </>
+                    </div>
                 )}
-            </ReactImageUploading>
+            </ImageUploading>
+            {isError && (
+                <div className={styles.feedback}>{meta.error}</div>
+            )}
         </div>
-    )
+    );
 }
 
-export default UploadFileField
+export default React.memo(UploadImage);

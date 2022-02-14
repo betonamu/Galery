@@ -35,6 +35,7 @@ const sendRequest = async (options, params = {}) => {
             Object.keys(fileObjects).forEach(key => {
                 if (fileObjects[key].length > 0) {
                     fileObjects[key].forEach(file => {
+                        console.log(key);
                         formData.append(`${key}[]`, file);
                     });
                 } else if (fileObjects[key].constructor !== Array) {

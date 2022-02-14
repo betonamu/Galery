@@ -4,10 +4,11 @@ import {productActionTypes} from "../actions";
 import {handleActions} from "redux-actions";
 import {createSuccessActionType} from "../helper";
 
-const {GET_COLLECTION_BY_ID} = productActionTypes;
+const {GET_COLLECTION_BY_ID, GET_ALL_MODEL} = productActionTypes;
 
 const initialState = {
     collection: {},
+    models: []
 };
 
 const product = handleActions(
@@ -19,6 +20,12 @@ const product = handleActions(
             return {
                 ...state,
                 collection: action.payload.resultObj
+            };
+        },
+        [createSuccessActionType(GET_ALL_MODEL)]: (state, action) => {
+            return {
+                ...state,
+                models: action.payload.resultObj
             };
         },
     },

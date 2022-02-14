@@ -10,7 +10,6 @@ import ClockIcon from "../../../asstes/icons/clock.svg";
 import styles from "./ModelItem.module.scss";
 
 const ModelItem = ({data}) => {
-    console.log(data)
     return (
         <Link href={`/collections/${data?.id}`}>
             <div className={styles.modelItem}>

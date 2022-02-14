@@ -1,0 +1,40 @@
+@import "../../../asstes/scss/global";
+
+.button {
+  cursor: pointer;
+  @include smallScreen {
+    cursor: unset;
+  }
+  padding: 8px 20px;
+  outline: none;
+  display: flex;
+  align-items: center;
+  border-radius: $basic-radius;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.button__primary {
+  background-color: $blue-main;
+  color: white;
+  border: 1px solid $blue-main;
+}
+
+.button__secondary {
+  background-color: white;
+  border: 1px solid $blue-main;
+  color: $blue-main;
+}
+
+.button__gray {
+  background-color: #c0c0c0;
+  border: 0;
+  color: white;
+}
+
+.button__disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 import {wrapper} from "../../redux/store";
 import {productActions, productActionTypes} from "../../redux/actions";
-import CollectionDetail from "../../components/CollectionDetail";
+import CollectionDetail from "../../components/Collections/CollectionDetail";
 import {useRouter} from "next/router";
 
 const CollectionDetailPage = () => {

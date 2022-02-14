@@ -5,7 +5,7 @@
   --row-gap: calc(var(--column-gap) / 2);
 
   width: 60%;
-  @include smallScreen{
+  @include smallScreen {
     width: 100%;
   }
 
@@ -26,7 +26,7 @@
     > div {
       width: calc(50% - var(--column-gap)) !important;
       margin-top: 0;
-      @include smallScreen{
+      @include smallScreen {
         width: 100% !important;
       }
     }
@@ -34,5 +34,18 @@
     .input-field {
       width: 100%;
     }
+  }
+
+  .btn-submit {
+    width: 310px;
+    height: 54px;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 22px;
+    background: #114B9F;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    margin: 40px auto 0;
   }
 }

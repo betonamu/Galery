@@ -1,0 +1,51 @@
+@import "../../../assets/scss/global";
+
+.create-collection-wrapper {
+  --column-gap: 40px;
+  --row-gap: calc(var(--column-gap) / 2);
+
+  width: 60%;
+  @include smallScreen {
+    width: 100%;
+  }
+
+  h4 {
+    svg {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+  }
+
+  .collection-info-group {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--column-gap);
+    row-gap: var(--row-gap);
+
+    > div {
+      width: calc(50% - var(--column-gap)) !important;
+      margin-top: 0;
+      @include smallScreen {
+        width: 100% !important;
+      }
+    }
+
+    .input-field {
+      width: 100%;
+    }
+  }
+
+  .btn-submit {
+    width: 310px;
+    height: 54px;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 22px;
+    background: #114B9F;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    margin: 40px auto 0;
+  }
+}

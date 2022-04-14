@@ -1,0 +1,111 @@
+@import "../../../assets/scss/global";
+
+$blue: #0072BC;
+
+.upload-image-wrapper {
+  margin-top: 20px;
+
+  label {
+    font-size: 12px;
+    line-height: 18px;
+
+    span {
+      margin-left: 3px;
+      color: #f33060;
+    }
+  }
+
+  &.error {
+    label {
+      color: #f33060;
+    }
+  }
+
+  .feedback {
+    color: #f33060;
+    font-size: 0.75rem;
+    line-height: 18px;
+    margin-top: 2px;
+  }
+
+  .upload-image {
+    width: 100%;
+
+    .image-item {
+      width: 100%;
+      position: relative;
+      margin-bottom: 20px;
+
+      img {
+        width: 100%;
+        height: 402px;
+        object-fit: cover;
+        @include smallScreen {
+          height: 184px;
+        }
+        @include tabletScreen {
+          height: 350px;
+        }
+      }
+
+      .close-icon {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        height: 32px;
+        width: 32px;
+        padding: 0;
+        background-color: white;
+        border-radius: 50%;
+        border: 1px solid #999999;
+        cursor: pointer;
+      }
+    }
+
+    .upload-area {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      border: 1px dashed $blue;
+      background-color: transparent;
+      box-sizing: border-box;
+      height: 140px;
+      color: $blue;
+      font-size: 18px;
+      cursor: pointer;
+      font-family: $font-family;
+      @include smallScreen {
+        font-size: 15px;
+        cursor: unset;
+        padding: 0 66px;
+      }
+
+      p {
+        color: #AEB2B7;
+        font-size: 18px;
+        margin-bottom: 0;
+        text-align: center;
+        @include smallScreen {
+          font-size: 13px;
+        }
+        @include tabletScreen {
+          font-size: 15px;
+        }
+      }
+
+      &.required {
+        border: 1px dashed #f33060;
+      }
+
+      &.have-a-image {
+        height: 70px;
+      }
+    }
+  }
+}

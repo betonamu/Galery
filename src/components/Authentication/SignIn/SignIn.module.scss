@@ -1,0 +1,25 @@
+@import "../../../assets/scss/global";
+
+.sign-in-wrapper {
+  display: flex;
+  column-gap: 50px;
+
+  .left-content {
+    width: 60%;
+  }
+
+  .right-content {
+    width: 40%;
+    padding: 0 50px;
+
+    .submit-btn {
+      width: 200px;
+      margin: 20px auto 0;
+      display: flex;
+      justify-content: center;
+      border: 0;
+      background-color: $blue-main;
+      color: white;
+    }
+  }
+}

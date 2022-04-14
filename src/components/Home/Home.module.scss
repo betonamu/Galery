@@ -1,0 +1,13 @@
+@import "../../assets/scss/global";
+
+.home-wrapper {
+  display: grid;
+  --header-height: 56px;
+  --column: 4;
+  margin-top: 20px;
+  @include smallScreen{
+    --column: 2;
+  }
+  grid-template-columns: repeat(var(--column), 1fr);
+  grid-column-gap: 20px;
+}

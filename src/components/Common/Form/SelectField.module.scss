@@ -1,0 +1,45 @@
+@import "../../../assets/scss/global";
+
+.pc-select-field {
+    label {
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 18px;
+
+        span {
+            margin-left: 3px;
+            color: #f33060;
+        }
+    }
+
+    &.error {
+        label {
+            color: #f33060;
+        }
+
+        .feedback {
+            color: #f33060;
+            font-size: 12px;
+            line-height: 18px;
+            margin-top: 2px;
+        }
+    }
+
+    .clear-indicator-icon {
+        &:hover {
+            svg {
+                stroke: #999999;
+            }
+        }
+
+        svg {
+            width: 16px;
+            height: 16px;
+            transition: all .15s;
+
+            path {
+                stroke-width: 3;
+            }
+        }
+    }
+}

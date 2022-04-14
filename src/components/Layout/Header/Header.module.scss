@@ -1,0 +1,21 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: var(--bs-dark-rgb) !important;
+
+    [class~="dropdown"] {
+        &:hover {
+            [class="dropdown-menu"] {
+                display: block;
+                margin-top: 0;
+            }
+        }
+    }
+
+    [class="nav-link"]:last-child {
+        padding: 0.5rem 0 !important;
+    }
+}

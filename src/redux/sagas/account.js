@@ -1,0 +1,43 @@
+import {call, put, takeLatest} from 'redux-saga/effects';
+
+import apiConfig from '../../constants/apiConfig';
+import {accountActions, accountActionTypes} from '../actions';
+import {processCallbackAction} from '../helper';
+import {handleApiResponse, sendRequest} from "../../utils/api";
+import {removeItem, setStringData} from "../../utils/localStorage";
+import {storageKeys} from "../../constants";
+
+const {LOGOUT, SIGN_IN} = accountActionTypes;
+
+function* signInSaga({payload: {params, onCompleted, onError}}) {
+    console.log(params)
+    try {
+        const result = yield call(sendRequest, apiConfig.authenticate.signIn, params);
+        if (result?.success) {
+            setStringData(storageKeys.USER_TOKEN, result?.responseData.resultObj);
+            const getProfileResult = yield call(sendRequest, apiConfig.authenticate.getUserByToken);
+            if (getProfileResult.success) {
+                console.log(getProfileResult.responseData.resultObj);
+
+                yield put(accountActions.setProfile({data: getProfileResult.responseData?.resultObj}));
+            }
+            handleApiResponse(result, onCompleted, onError);
+        } else {
+            onError(result?.responseData.resultObj);
+        }
+    } catch (error) {
+        onError(error);
+    }
+}
+
+function* logoutSaga({payload: {onCompleted}}){
+    removeItem(storageKeys.USER_TOKEN);
+    removeItem(storageKeys.USER_DATA);
+    yield put(accountActions.setProfile({data: {}}))
+    onCompleted();
+}
+
+export default [
+    takeLatest(SIGN_IN, signInSaga),
+    takeLatest(LOGOUT, logoutSaga)
+];

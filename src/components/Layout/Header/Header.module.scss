@@ -1,3 +1,5 @@
+@import "../../../assets/scss/global";
+
 .header {
     position: fixed;
     top: 0;
@@ -11,6 +13,15 @@
             [class="dropdown-menu"] {
                 display: block;
                 margin-top: 0;
+                background-color: var(--white);
+
+                a {
+                    color: var(--black);
+
+                    &:hover {
+                        background-color: var(--bs-dark-rgb);
+                    }
+                }
             }
         }
     }

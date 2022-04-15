@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useLayoutEffect, useState} from "react";
 import Link from "next/link";
 import {useDispatch} from "react-redux";
 import {useRouter} from "next/router";
@@ -6,19 +6,22 @@ import {useRouter} from "next/router";
 import useAuth from "@hooks/useAuth";
 import {accountActions} from "@redux/actions";
 
-import {paths} from "@constants";
+import {paths, storageKeys} from "@constants";
 
 import styles from "./Header.module.scss";
 import classNames from "classnames";
+import {getStringData, setStringData} from "@utils/localStorage";
+import DropdownMenu from "@components/Common/DropdownMenu";
+import useDarkMode from "@hooks/useDarkMode";
 
 
 const Header = () => {
     const dispatch = useDispatch();
     const {push} = useRouter();
     const {user, isAuthenticated} = useAuth();
+    const {switchTheme, isDarkMode} = useDarkMode();
 
     const [isOpen, setIsOpen] = useState(false);
-    const [isDarkMode, setIsDarkMode] = useState(false);
 
     const onLogout = () => {
         dispatch(accountActions.logout({
@@ -28,26 +31,13 @@ const Header = () => {
         }))
     }
 
-    const switchTheme = (e) => {
-        let nextTheme = '';
-        if (e.target?.checked) {
-            nextTheme = 'dark';
-            setIsDarkMode(true);
-        } else {
-            nextTheme = 'light';
-            setIsDarkMode(false);
-        }
-        document.documentElement.setAttribute('data-theme', nextTheme);
-        return nextTheme;
-    }
-
     return (
         <div className={styles.header}>
             <div className="container my-2">
                 <div className="d-flex justify-content-between align-items-center">
                     <div/>
                     <label className="switch">
-                        <input type="checkbox" onChange={(e) => switchTheme(e)}/>
+                        <input type="checkbox" onChange={(e) => switchTheme(e)} checked={isDarkMode}/>
                         <span className="slider round"/>
                     </label>
                 </div>
@@ -64,32 +54,38 @@ const Header = () => {
                                 <a className="nav-link active" href={paths.home}>HOME</a>
                             </li>
                             <li className="nav-item">
-                                <div className="dropdown cursor-pointer">
-                                    <a className="nav-link dropdown-toggle">
-                                        Studio Category
-                                    </a>
-                                    <ul className="dropdown-menu">
-                                        <li><a className="dropdown-item" href="#">Action</a></li>
-                                        <li><a className="dropdown-item" href="#">Another action</a></li>
-                                        <li><a className="dropdown-item" href="#">Something else here</a></li>
-                                    </ul>
-                                </div>
+                                <DropdownMenu dropdownName={"Studio Category"}
+                                              dropdownItems={[
+                                                  {
+                                                      name: 'Action',
+                                                      url: "",
+                                                  },
+                                                  {
+                                                      name: 'Another action',
+                                                      url: "",
+                                                  },
+                                                  {
+                                                      name: 'Something else here',
+                                                      url: "",
+                                                  },
+                                              ]}/>
                             </li>
                             <li className="nav-item">
-                                <div className="dropdown cursor-pointer">
-                                    <a className="nav-link dropdown-toggle">
-                                        Collection Management
-                                    </a>
-                                    <ul className="dropdown-menu">
-                                        <Link href={paths.createCollection}>
-                                            <li><a className="dropdown-item" href="#">Create Collection</a></li>
-                                        </Link>
-                                        <Link href={paths.collectionList}>
-                                            <li><a className="dropdown-item" href="#">List Collections</a></li>
-                                        </Link>
-                                        <li><a className="dropdown-item" href="#">Something else here</a></li>
-                                    </ul>
-                                </div>
+                                <DropdownMenu dropdownName={"Collection Management"}
+                                              dropdownItems={[
+                                                  {
+                                                      name: 'Create Collection',
+                                                      url: paths.createCollection,
+                                                  },
+                                                  {
+                                                      name: 'List Collections',
+                                                      url: paths.collectionList,
+                                                  },
+                                                  {
+                                                      name: 'Something else here',
+                                                      url: "",
+                                                  },
+                                              ]}/>
                             </li>
                         </ul>
                     </div>
@@ -99,18 +95,22 @@ const Header = () => {
                                 <a className="nav-link" href="#">Sign In</a>
                             </Link>
                             :
-                            <li className="nav-link">
-                                <div className="dropdown cursor-pointer">
-                                    <a className="nav-link dropdown-toggle">
-                                        {`${user.firstName} ${user.lastName}`}
-                                    </a>
-                                    <ul className="dropdown-menu">
-                                        <li><a className="dropdown-item" href="#">Action</a></li>
-                                        <li><a className="dropdown-item" href="#">Another action</a></li>
-                                        <li><a className="dropdown-item" onClick={onLogout}>Logout</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                            <DropdownMenu dropdownName={`${user.firstName} ${user.lastName}`}
+                                          dropdownItems={[
+                                              {
+                                                  name: 'Action',
+                                                  url: "",
+                                              },
+                                              {
+                                                  name: 'Another action',
+                                                  url: "",
+                                              },
+                                              {
+                                                  name: 'Logout',
+                                                  url: "",
+                                                  onClick: onLogout,
+                                              },
+                                          ]}/>
                         }
                     </div>
                 </div>

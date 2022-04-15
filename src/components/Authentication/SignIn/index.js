@@ -1,18 +1,18 @@
 import React, {useState} from "react";
 import * as Yup from 'yup';
 import {useDispatch} from "react-redux";
+import {useRouter} from "next/router";
 
 import BasicForm from "../../Common/Control/BasicForm";
 import InputTextField from "../../Common/Form/InputTextField";
 import Container from "../../Common/Container";
 import Button from "../../Common/Control/Button";
 import {accountActions} from "../../../redux/actions";
+import {paths, storageKeys} from "../../../constants";
+
 import UserIcon from "../../../assets/icons/user-gray.svg";
 
 import styles from "./SignIn.module.scss";
-import {setStringData} from "../../../utils/localStorage";
-import {paths, storageKeys} from "../../../constants";
-import {useRouter} from "next/router";
 
 const SignInForm = () => {
     const [errorMsg, setErrorMsg] = useState([]);
@@ -25,7 +25,7 @@ const SignInForm = () => {
             params: values,
             onCompleted: (data) => {
                 console.log({data})
-                push(paths.home)
+                push(paths.home).then();
             },
             onError: (error) =>{
                 console.log(error)

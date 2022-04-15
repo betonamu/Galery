@@ -3,6 +3,9 @@ import React from 'react';
 import Header from "./Header";
 import Footer from "./Footer";
 
+import NavigationBottom from "@components/Layout/NavigationBottom";
+import {Mobile} from "@components/Common/Media";
+
 import styles from "./Layout.module.scss";
 
 const Layout = ({children}) => {
@@ -13,6 +16,9 @@ const Layout = ({children}) => {
                 {children}
             </div>
             <Footer/>
+            <Mobile>
+                <NavigationBottom/>
+            </Mobile>
         </div>
     )
 }

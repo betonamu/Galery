@@ -1,0 +1,55 @@
+@import "../../../assets/scss/global";
+
+.navigation-bottom-wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    background: var(--bs-dark-rgb);
+    box-shadow: 0px -4px 24px rgba(0, 0, 0, 0.1);
+    border-radius: 12px 12px 0 0;
+    padding: 10px 0;
+    z-index: 10;
+
+    .navigation-item {
+        position: relative;
+
+        .iconWrapper {
+            position: relative;
+            width: 22px;
+            height: 22px;
+            margin: 0 auto 7px;
+
+            .icon-active {
+                position: absolute;
+                top: -24px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 54px;
+                height: 54px;
+                border-radius: 50%;
+                left: calc(50% - 54px / 2);
+                background-color: var(--white);
+
+                &:before{
+                    content: '';
+                    position: absolute;
+                    background-color: rgba(15, 98, 249, .1);
+                    border-radius: 50%;
+                    width: 42px;
+                    height: 42px;
+                }
+            }
+        }
+
+        .navigation-tab-name {
+            margin: 0;
+            color: var(--black);
+        }
+    }
+}

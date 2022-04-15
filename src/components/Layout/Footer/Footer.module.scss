@@ -1,6 +1,25 @@
-.footer-wrapper{
-  display: flex;
-  align-items: center;
-  height: 60px;
-  border-top: 1px solid rgb(222, 226, 230);
+@import "../../../assets/scss/global";
+
+.footer-wrapper {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    padding: ($padding * 2) 0;
+    border-top: 10px solid var(--bs-dark-rgb);
+    @include smallScreen{
+        padding-bottom: 150px;
+    }
+
+    .copy-right{
+        @include smallScreen{
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    .contact-icon {
+        @include smallScreen {
+            margin-bottom: $margin;
+        }
+    }
 }

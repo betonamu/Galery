@@ -3,13 +3,13 @@
 :root {
     --white: white;
     --black: black;
-    --bs-dark-rgb: white;
+    --bs-dark-rgb: #F8F9FA;
     --white-switch: black;
     --black-switch: white;
 }
 
 [data-theme="dark"] {
-    --white: black;
+    --white: var(--bs-gray-800);
     --black: white;
     --gray: black;
     --bs-dark-rgb: #212529;
@@ -18,8 +18,8 @@
 body {
     margin: 0;
     font-family: $font-family;
-    background-color: var(--white);
-    color: var(--black);
+    background-color: var(--white) !important;
+    color: var(--black) !important;
 }
 
 .cursor-pointer {

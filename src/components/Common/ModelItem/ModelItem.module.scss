@@ -5,6 +5,7 @@
   border-radius: $medium-radius;
   overflow: hidden;
   cursor: pointer;
+  background-color: var(--bs-dark-rgb);
 
   .image-cover {
     width: 100%;
@@ -13,7 +14,7 @@
     transition: opacity .2s ease-in-out;
 
     &:before {
-      content: "123";
+      content: "";
       position: absolute;
       top: 0;
       left: 0;

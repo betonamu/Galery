@@ -10,15 +10,12 @@ import {storageKeys} from "../../constants";
 const {LOGOUT, SIGN_IN} = accountActionTypes;
 
 function* signInSaga({payload: {params, onCompleted, onError}}) {
-    console.log(params)
     try {
         const result = yield call(sendRequest, apiConfig.authenticate.signIn, params);
         if (result?.success) {
             setStringData(storageKeys.USER_TOKEN, result?.responseData.resultObj);
             const getProfileResult = yield call(sendRequest, apiConfig.authenticate.getUserByToken);
             if (getProfileResult.success) {
-                console.log(getProfileResult.responseData.resultObj);
-
                 yield put(accountActions.setProfile({data: getProfileResult.responseData?.resultObj}));
             }
             handleApiResponse(result, onCompleted, onError);

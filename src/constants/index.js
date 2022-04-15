@@ -9,6 +9,7 @@ export const imagesUrl = process.env.NEXT_PUBLIC_PMC_API_GATEWAY_URL + "images/"
 export const storageKeys = {
     USER_DATA: 'gallery-user-data',
     USER_TOKEN: 'gallery-user-token',
+    DATA_THEME: 'gallery-data-theme',
 }
 
 const baseUrl = "/";
@@ -16,6 +17,7 @@ const baseUrl = "/";
 export const paths = {
     home: baseUrl,
     signIn : `${baseUrl}accounts/sign-in`,
+    profile : `${baseUrl}accounts`,
     createCollection: `${baseUrl}collections/management/create`,
     collectionList: `${baseUrl}collections/management/`,
 }

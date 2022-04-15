@@ -10,7 +10,6 @@ import styles from "./Home.module.scss";
 const Home = () => {
     const dispatch = useDispatch();
     const collections = useSelector(state => state.home?.collections);
-    console.log(collections)
 
     return (
         <Container>

@@ -1,6 +1,6 @@
 // import { HYDRATE } from 'next-redux-wrapper';
-import { handleActions } from 'redux-actions';
-import { loadingActionTypes } from '../actions';
+import {Action, handleActions} from 'redux-actions';
+import { loadingActionTypes } from 'src/redux/actions';
 
 const { START_LOADING, FINISH_LOADING, SHOW_LOADING_FULLSCREEN, HIDE_LOADING_FULLSCREEN } = loadingActionTypes;
 
@@ -13,13 +13,13 @@ const loading = handleActions(
         [START_LOADING]: (state, action) => {
             return {
                 ...state,
-                [action.payload]: true
+                [`${action.payload}`]: true
             };
         },
         [FINISH_LOADING]: (state, action) => {
             return {
                 ...state,
-                [action.payload]: false
+                [`${action.payload}`]: false
             };
         },
         [SHOW_LOADING_FULLSCREEN]: state => ({

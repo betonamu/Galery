@@ -1,25 +1,43 @@
-import React from 'react';
-import { useField } from 'formik';
+import React, {ReactElement, InputHTMLAttributes, EventHandler} from 'react';
+import {useField} from 'formik';
 import classNames from 'classnames';
 
 import styles from './InputTextField.module.scss';
 
-const InputTextField = ({
-    iconLeft,
-    iconRight,
-    label,
-    placeholder,
-    disabled,
-    className,
-    type = 'text',
-    onChange,
-    hideErrorMessage,
-    sizeLg,
-    fullBorder,
-    autoComplete = 'on',
-    ...props
-}) => {
-    const [ field, meta, helpers ] = useField(props);
+type InputTextFieldType = {
+    iconLeft?: ReactElement;
+    iconRight?: ReactElement;
+    label: string;
+    placeholder?: string;
+    disabled?: boolean;
+    className?: string;
+    type: string;
+    onChange?: EventHandler;
+    hideErrorMessage?: boolean;
+    sizeLg?: boolean;
+    fullBorder?: boolean;
+    autoComplete?: InputHTMLAttributes;
+    name: string;
+    required?: boolean;
+    props?: any;
+}
+
+const InputTextField: React.FC<InputTextFieldType> = ({
+                                                          iconLeft,
+                                                          iconRight,
+                                                          label,
+                                                          placeholder,
+                                                          disabled,
+                                                          className,
+                                                          type = 'text',
+                                                          onChange,
+                                                          hideErrorMessage,
+                                                          sizeLg,
+                                                          fullBorder,
+                                                          autoComplete = 'on',
+                                                          ...props
+                                                      }) => {
+    const [field, meta, helpers] = useField(props);
     const isError = meta.touched && meta.error
 
     const onChangeValue = (evt) => {
@@ -47,10 +65,10 @@ const InputTextField = ({
             <div className={styles.inputGroup}>
                 {
                     iconLeft
-                    ?
-                    <span className={styles.iconLeft}>{iconLeft}</span>
-                    :
-                    null
+                        ?
+                        <span className={styles.iconLeft}>{iconLeft}</span>
+                        :
+                        null
                 }
                 <input
                     {...field}
@@ -67,14 +85,14 @@ const InputTextField = ({
                 />
                 {
                     iconRight
-                    ?
-                    <span className={styles.iconRight}>{iconRight}</span>
-                    :
-                    null
+                        ?
+                        <span className={styles.iconRight}>{iconRight}</span>
+                        :
+                        null
                 }
             </div>
             {isError && !hideErrorMessage && (
-                 <div className={styles.feedback}>{meta.error}</div>
+                <div className={styles.feedback}>{meta.error}</div>
             )}
         </div>
     );

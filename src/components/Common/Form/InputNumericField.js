@@ -1,26 +1,40 @@
-import React from 'react';
-import { useField } from 'formik';
+import React, {EventHandler} from 'react';
+import {useField} from 'formik';
 import classNames from 'classnames';
 
 import styles from './InputTextField.module.scss';
-import { formatNumber } from '../../../utils';
 
-const InputNumericField = ({
-    iconLeft,
-    iconRight,
-    label,
-    placeholder,
-    disabled,
-    className,
-    type = 'text',
-    onChange,
-    hideErrorMessage,
-    sizeLg,
-    fullBorder,
-    autocomplete,
-    ...props
-}) => {
-    const [ field, meta, helpers ] = useField(props);
+interface IInputNumericField {
+    iconLeft: string;
+    iconRight: string;
+    label: string;
+    placeholder: string;
+    disabled: boolean;
+    className: string;
+    type: string;
+    onChange: EventHandler,
+    hideErrorMessage: boolean,
+    sizeLg: boolean,
+    fullBorder: boolean,
+    autocomplete: string,
+}
+
+const InputNumericField: React.FC<IInputNumericField> = ({
+                                                             iconLeft,
+                                                             iconRight,
+                                                             label,
+                                                             placeholder,
+                                                             disabled,
+                                                             className,
+                                                             type = 'text',
+                                                             onChange,
+                                                             hideErrorMessage,
+                                                             sizeLg,
+                                                             fullBorder,
+                                                             autocomplete,
+                                                             ...props
+                                                         }) => {
+    const [field, meta, helpers] = useField(props);
     const isError = meta.touched && meta.error
 
     const onChangeValue = (evt) => {
@@ -63,13 +77,13 @@ const InputNumericField = ({
                         [styles.hasIconLeft]: !!iconLeft,
                         [styles.hasIconRight]: !!iconRight
                     })}
-                    autocomplete={autocomplete}
+                    autoComplete={autocomplete}
                     onChange={onChangeValue}
                 />
                 {iconRight && <span className={styles.iconRight}>{iconRight}</span>}
             </div>
             {isError && !hideErrorMessage && (
-                 <div className={styles.feedback}>{meta.error}</div>
+                <div className={styles.feedback}>{meta.error}</div>
             )}
         </div>
     );

@@ -13,21 +13,23 @@ import {paths, storageKeys} from "../../../constants";
 import UserIcon from "../../../assets/icons/user-gray.svg";
 
 import styles from "./SignIn.module.scss";
+import {ResponseApi} from "@common/Models/ApiModels";
+import {FormikInitType} from "@common/Models/Formik";
 
 const SignInForm = () => {
     const [errorMsg, setErrorMsg] = useState([]);
     const dispatch = useDispatch();
     const {push} = useRouter();
 
-    const onSubmitSignIn = (values) => {
+    const onSubmitSignIn = (values: FormikInitType<any>) => {
         console.log(values)
         dispatch(accountActions.signIn({
             params: values,
-            onCompleted: (data) => {
+            onCompleted: (data: ResponseApi<any>) => {
                 console.log({data})
                 push(paths.home).then();
             },
-            onError: (error) =>{
+            onError: (error: ResponseApi<any>) =>{
                 console.log(error)
             }
         }))

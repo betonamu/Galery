@@ -4,10 +4,10 @@ import {createWrapper } from 'next-redux-wrapper';
 import createSagaMiddleware from 'redux-saga'
 
 import rootSaga from './sagas';
-import rootReducer from './reducers';
-import { ssrMode } from '../constants';
+import rootReducer    from './reducers';
+import { ssrMode } from '@constants';
 
-const getMiddleWare = (sagaMiddleware) => {
+const getMiddleWare = (sagaMiddleware: any) => {
    if (process.env.NODE_ENV === 'development') {
       const composeEnhancers = ssrMode ? compose : window?.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -17,7 +17,7 @@ const getMiddleWare = (sagaMiddleware) => {
    return applyMiddleware(sagaMiddleware);
 }
 
-const makeStore = (initialState) => {
+const makeStore = (initialState: any) => {
    const sagaMiddleware = createSagaMiddleware();
    const store = createStore(
       rootReducer,

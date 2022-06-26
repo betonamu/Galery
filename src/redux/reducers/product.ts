@@ -1,6 +1,6 @@
 import {HYDRATE} from "next-redux-wrapper";
 
-import {productActionTypes} from "../actions";
+import {productActionTypes} from "src/redux/actions";
 import {handleActions} from "redux-actions";
 import {createSuccessActionType} from "../helper";
 

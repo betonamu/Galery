@@ -1,0 +1,1 @@
+import React, {ReactElement, ReactFragment} from "react";import styles from "./Container.module.scss";const Container: React.FC = ({children}) => {    return (        <div className={styles.containerWrapper}>            <div className="container">                {children}            </div>        </div>    );}export default Container;

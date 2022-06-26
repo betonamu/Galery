@@ -1,7 +1,7 @@
-import {HYDRATE} from 'next-redux-wrapper'
-import {handleActions} from 'redux-actions';
+import {HYDRATE} from "next-redux-wrapper";
+import {handleActions} from "redux-actions";
 
-import {homeActionTypes} from '../actions';
+import {homeActionTypes} from "src/redux/actions";
 import {createSuccessActionType} from '../helper'
 
 const {GET_ALL_COLLECTION} = homeActionTypes;
@@ -12,13 +12,13 @@ const initialState = {
 
 const home = handleActions(
     {
-        [HYDRATE]: (state, action) => {
+        [HYDRATE]: (state: any, action: any) => {
             return {...state, ...action.payload.home}
         },
-        [createSuccessActionType(GET_ALL_COLLECTION)]: (state, action) => {
+        [createSuccessActionType(GET_ALL_COLLECTION)]: (state: any, action: any) => {
             return {
                 ...state,
-                collections: action.payload.resultObj
+                collections: action.payload.resultObj || []
             };
         },
     },

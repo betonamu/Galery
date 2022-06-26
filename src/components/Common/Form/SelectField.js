@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { useField } from "formik";
+import {useField} from "formik";
 import React from "react";
 import Select from 'react-select'
 
@@ -7,11 +7,11 @@ import IconClose from '../../../assets/icons/close.svg';
 
 import styles from './SelectField.module.scss';
 
-const ClearIndicator = props => {
+const ClearIndicator: React.FC = props => {
     const {
         children = 'test',
         getStyles,
-        innerProps: { ref, ...restInnerProps },
+        innerProps: {ref, ...restInnerProps},
     } = props;
 
     return (
@@ -21,12 +21,12 @@ const ClearIndicator = props => {
             style={getStyles('clearIndicator', props)}
             className={styles.clearIndicatorIcon}
         >
-            <IconClose stroke="inherit" />
+            <IconClose stroke="inherit"/>
         </div>
     );
 };
 
-const customStyles = (isError, outsideStyles = {}) => {
+const customStyles:React.FC = (isError, outsideStyles = {}) => {
     const {
         placeholder,
         control,
@@ -41,7 +41,7 @@ const customStyles = (isError, outsideStyles = {}) => {
     const mergeStyles = (outsideStyle, insideStyle) => (provided, state) => ({
         ...provided,
         ...insideStyle(state),
-        ...(outsideStyle && outsideStyle({ ...state, isError }))
+        ...(outsideStyle && outsideStyle({...state, isError}))
     })
 
     return {
@@ -50,7 +50,7 @@ const customStyles = (isError, outsideStyles = {}) => {
             lineHeight: '22px',
             color: '#B2BAC6'
         })),
-        control: mergeStyles(control, ({ isFocused }) => ({
+        control: mergeStyles(control, ({isFocused}) => ({
             border: 'none',
             borderRadius: 0,
             borderBottom: '1px solid #E5E5E5',
@@ -64,7 +64,7 @@ const customStyles = (isError, outsideStyles = {}) => {
         valueContainer: mergeStyles(valueContainer, _ => ({
             paddingLeft: 0
         })),
-        dropdownIndicator: mergeStyles(dropdownIndicator, ({ isFocused }) => ({
+        dropdownIndicator: mergeStyles(dropdownIndicator, ({isFocused}) => ({
             color: isError ? '#f33060' : isFocused ? '#0F62F9' : '#E5E5E5'
         })),
         loadingIndicator: mergeStyles(loadingIndicator, _ => ({
@@ -75,8 +75,8 @@ const customStyles = (isError, outsideStyles = {}) => {
                 padding: '8px 5px !important'
             }
         })),
-        clearIndicator: mergeStyles(clearIndicator, ({ isFocused }) => ({
-            stroke: isFocused ? '#adadad': '#E5E5E5',
+        clearIndicator: mergeStyles(clearIndicator, ({isFocused}) => ({
+            stroke: isFocused ? '#adadad' : '#E5E5E5',
             "&:hover": {
                 stroke: 'red'
             }
@@ -88,22 +88,26 @@ const customStyles = (isError, outsideStyles = {}) => {
     }
 }
 
-const SelectField = ({
-    label,
-    required,
-    className,
-    name,
-    options,
-    optionLabelKey = 'label',
-    optionValueKey = 'value',
-    onChange,
-    components,
-    hideErrorMessage,
-    selectStyles,
-    ...rest
-}) => {
-    const [field, meta, helpers] = useField({ name });
-    const preparedOptions = (options || []).map(option => ({ value: option[optionValueKey], label: option[optionLabelKey], option}));
+const SelectField:React.FC<any>= ({
+                         label,
+                         required,
+                         className,
+                         name,
+                         options,
+                         optionLabelKey = 'label',
+                         optionValueKey = 'value',
+                         onChange,
+                         components,
+                         hideErrorMessage,
+                         selectStyles,
+                         ...rest
+                     }) => {
+    const [field, meta, helpers] = useField({name});
+    const preparedOptions = (options || []).map(option => ({
+        value: option[optionValueKey],
+        label: option[optionLabelKey],
+        option
+    }));
     const isError = meta.touched && meta.error
 
     const onChangeValue = (item) => {
@@ -140,7 +144,7 @@ const SelectField = ({
                 {...rest}
             />
             {isError && !hideErrorMessage && (
-                 <div className={styles.feedback}>{meta.error}</div>
+                <div className={styles.feedback}>{meta.error}</div>
             )}
         </div>
     )

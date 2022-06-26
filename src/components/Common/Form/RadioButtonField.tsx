@@ -1,16 +1,22 @@
+import React, {ChangeEventHandler, ReactChildren} from 'react';
 import classNames from 'classnames';
-import { useField } from 'formik';
-import React from 'react';
+import {useField} from 'formik';
 
 import styles from './RadioButtonField.module.scss';
 
-const RadioButtonField = ({
-    children,
-    className,
-    onChange,
-    ...props
-}) => {
-    const [ field, meta ] = useField(props);
+interface IRadioButtonField {
+    children: ReactChildren,
+    className?: string,
+    onChange: ChangeEventHandler,
+}
+
+const RadioButtonField: React.FC<IRadioButtonField> = ({
+                                                           children,
+                                                           className,
+                                                           onChange,
+                                                           ...props
+                                                       }) => {
+    const [field, meta] = useField(props);
 
     const isChecked = meta.value === props.value
 
@@ -27,7 +33,7 @@ const RadioButtonField = ({
             isChecked && styles.checked
         )}>
             <label className={styles.container}>
-                <span className={styles.checkmark} />
+                <span className={styles.checkmark}/>
                 <div>
                     {children}
                 </div>

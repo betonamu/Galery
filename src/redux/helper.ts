@@ -1,15 +1,17 @@
-import { loadingActions } from './actions';
-import { call, put } from 'redux-saga/effects';
-import { handleApiResponse, sendRequest } from '../utils/api';
+import {loadingActions} from 'src/redux/actions';
+import {call, put} from 'redux-saga/effects';
+import {handleApiResponse, sendRequest} from '@utils/api';
+import {Action, PayloadType, RequestApi} from "@common/Models/ApiModels";
 
-const { startLoading, finishLoading } = loadingActions;
+const {startLoading, finishLoading} = loadingActions;
 
-export const createSuccessActionType = (type) => `${type}_SUCCESS`;
-export const createFailureActionType = (type) => `${type}_FAILURE`;
+export const createSuccessActionType = (type: Action) => `${type}_SUCCESS`;
+export const createFailureActionType = (type: Action) => `${type}_FAILURE`;
 
-export function* processLoadingAction(options, { payload, type }) {
+export function* processLoadingAction(options: any, {payload, type}: RequestApi<any>): any {
     const SUCCESS = createSuccessActionType(type);
     const FAILURE = createFailureActionType(type);
+    // @ts-ignore
     yield put(startLoading(type));
     try {
         const response = yield call(sendRequest, options, payload);
@@ -24,10 +26,11 @@ export function* processLoadingAction(options, { payload, type }) {
             error: true
         });
     }
+    // @ts-ignore
     yield put(finishLoading(type));
 }
 
-export function* processAction(options, { payload, type }) {
+export function* processAction(options: any, {payload, type}: RequestApi<any>): any {
     const SUCCESS = createSuccessActionType(type);
     const FAILURE = createFailureActionType(type);
     try {
@@ -45,12 +48,12 @@ export function* processAction(options, { payload, type }) {
     }
 }
 
-export function* processCallbackAction(options, payload) {
-    const { params, onCompleted, onError } = payload;
+export function* processCallbackAction(options: any, payload: PayloadType): any {
+    const {params, onCompleted, onError} = payload;
     try {
         const result = yield call(sendRequest, options, params);
         handleApiResponse(result, onCompleted, onError);
     } catch (error) {
-        onError(error);
+        onError?.(error);
     }
 }

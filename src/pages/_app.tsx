@@ -1,11 +1,11 @@
 import {END} from 'redux-saga';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert';
 
-import {wrapper} from '@/redux/store';
-import Layout from "@/components/Layout";
-import {NextQueryParamProvider} from "@/hocs/NextQueryParamProviderComponent";
+import {wrapper} from '@redux/store';
+import Layout from "@components/Layout";
+import {NextQueryParamProvider} from "@hocs/NextQueryParamProviderComponent";
 import {homeActions} from "@/redux/actions";
-import AlertTemplate from "@components/Common/AlertTemplete";
+import AlertTemplate from "@components/common/AlertTemplete";
 
 import '../assets/scss/index.scss';
 
@@ -18,7 +18,7 @@ const alertOptions = {
     transition: transitions.FADE,
 }
 
-const MyApp = ({Component, pageProps}) => {
+const MyApp = ({Component, pageProps}: any) => {
     return (
         <NextQueryParamProvider>
             <AlertProvider template={AlertTemplate} {...alertOptions}>
@@ -30,7 +30,7 @@ const MyApp = ({Component, pageProps}) => {
     );
 }
 
-MyApp.getInitialProps = wrapper.getInitialAppProps(store => async ({Component, ctx}) => {
+MyApp.getInitialProps = wrapper.getInitialAppProps(store => async ({Component, ctx}:any) => {
     if (Component.getInitialProps) {
         await Component.getInitialProps(ctx);
     }

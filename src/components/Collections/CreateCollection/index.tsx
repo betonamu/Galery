@@ -1,43 +1,44 @@
 import React, {useEffect, useState} from "react";
 import Link from "next/link";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import * as Yup from 'yup';
 
 import Container from "@components/Common/Container";
 import InputTextField from "@components/Common/Form/InputTextField";
 import BasicForm from "@components/Common/Control/BasicForm";
-import SelectField from "@components/Common/Form/SelectField";
+import SelectField from "@Components/Common/Form/SelectField";
 import {productActions} from "@redux/actions";
 import UploadFileField from "@components/Common/Form/UploadFileField";
 import Button from "@components/Common/Control/Button";
 import useNotification from "@hooks/useNotification";
+import {ResponseApi} from "@common/Models/ApiModels";
+import {useSelectorTyped} from "@hooks/useSelectorType";
 
 import BackIcon from "@assets/icons/chevron.svg";
 
 import styles from "./CreateCollection.module.scss";
 
-const CreateCollection = () => {
+const CreateCollection: React.FC = () => {
     const dispatch = useDispatch();
     const {showError, showSuccess} = useNotification();
 
     const [errorMsg, setErrorMsg] = useState();
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const models = useSelector(state => state.product?.models);
+    const models = useSelectorTyped(state => state.product?.models);
 
-    const onSubmit = (values,{resetForm}) => {
+    const onSubmit = (values: any, {resetForm}) => {
         setIsSubmitting(true);
         values.fileObjects = {imagesUpload: values.imagesUpload};
 
         dispatch(productActions.createCollection({
             params: values,
-            onCompleted: (response) => {
-                console.log(response);
+            onCompleted: (response: ResponseApi<{}>) => {
                 setIsSubmitting(false);
                 resetForm();
                 showSuccess("Create Successful");
             },
-            onError: (error) => {
+            onError: (error: ResponseApi<{}>) => {
                 // setErrorMsg(error);
                 console.log(error)
                 setIsSubmitting(false);
@@ -59,7 +60,7 @@ const CreateCollection = () => {
                         description: '',
                         folderName: '',
                         imagesUpload: [],
-                    }}
+                    } as any}
                     onSubmit={onSubmit}
                     validationSchema={Yup.object().shape({
                         collectionName: Yup.string()

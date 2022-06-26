@@ -1,21 +1,19 @@
 import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
 
 import Container from "@components/Common/Container";
-import {homeActions} from "@redux/actions";
 import ModelItem from "@components/Common/ModelItem";
+import {useSelectorTyped} from "@hooks/useSelectorType";
 
 import styles from "./Home.module.scss";
 
-const Home = () => {
-    const dispatch = useDispatch();
-    const collections = useSelector(state => state.home?.collections);
+const Home: React.FC = () => {
+    const collections = useSelectorTyped(state => state.home.collections);
 
     return (
         <Container>
             <div className={styles.homeWrapper}>
-                {collections?.map((item, index) => (
-                        <ModelItem data={item} key={index}/>
+                {collections.map((item: any, index: number) => (
+                    <ModelItem data={item} key={index}/>
                 ))}
             </div>
         </Container>

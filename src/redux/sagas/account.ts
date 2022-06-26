@@ -1,15 +1,15 @@
-import {call, put, takeLatest} from 'redux-saga/effects';
+import {call, put, takeLatest} from "redux-saga/effects";
 
-import apiConfig from '../../constants/apiConfig';
-import {accountActions, accountActionTypes} from '../actions';
-import {processCallbackAction} from '../helper';
-import {handleApiResponse, sendRequest} from "../../utils/api";
-import {removeItem, setStringData} from "../../utils/localStorage";
-import {storageKeys} from "../../constants";
+import apiConfig from "@constants/apiConfig";
+import {accountActions, accountActionTypes} from "src/redux/actions";
+import {handleApiResponse, sendRequest} from "@utils/api";
+import {removeItem, setStringData} from "@utils/localStorage";
+import {storageKeys} from "@constants";
+import {RequestApi} from "@common/Models/ApiModels";
 
 const {LOGOUT, SIGN_IN} = accountActionTypes;
 
-function* signInSaga({payload: {params, onCompleted, onError}}) {
+function* signInSaga({payload: {params, onCompleted, onError}}: any): any {
     try {
         const result = yield call(sendRequest, apiConfig.authenticate.signIn, params);
         if (result?.success) {
@@ -27,11 +27,11 @@ function* signInSaga({payload: {params, onCompleted, onError}}) {
     }
 }
 
-function* logoutSaga({payload: {onCompleted}}){
+function* logoutSaga({payload: {onCompleted}}: RequestApi<any>) {
     removeItem(storageKeys.USER_TOKEN);
     removeItem(storageKeys.USER_DATA);
     yield put(accountActions.setProfile({data: {}}))
-    onCompleted();
+    onCompleted?.();
 }
 
 export default [

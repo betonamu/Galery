@@ -3,16 +3,15 @@ import Link from "next/link";
 import {useDispatch} from "react-redux";
 import {useRouter} from "next/router";
 
-import useAuth from "@hooks/useAuth";
 import {accountActions} from "@redux/actions";
 
 import {paths, storageKeys} from "@constants";
 
 import styles from "./Header.module.scss";
 import classNames from "classnames";
-import {getStringData, setStringData} from "@utils/localStorage";
-import DropdownMenu from "@components/Common/DropdownMenu";
-import useDarkMode from "@hooks/useDarkMode";
+import useAuth from "../../../hooks/useAuth";
+import useDarkMode from "../../../hooks/useDarkMode";
+import DropdownMenu from "../../Common/DropdownMenu";
 
 
 const Header = () => {

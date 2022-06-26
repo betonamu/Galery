@@ -5,26 +5,36 @@ import Link from "next/link";
 import {generateImageUrl} from "@utils";
 import {dateFormat} from "@constants";
 
-import ClockIcon from "@assets/icons/clock.svg";
+import ChevronIcon from "@assets/icons/chevron.svg";
 
 import styles from "./ModelItem.module.scss";
 
 const ModelItem = ({data}) => {
+    const generateDate = (date) => {
+        let temp = moment(date).format("MMMM/DD/YYYY").split("/");
+        return `${temp[0]} ${temp[1]}, ${temp[2]}`;
+    }
+
     return (
         <Link href={`/collections/${data?.id}`}>
             <div className={styles.modelItem}>
                 {data?.folderName && data?.coverImage ?
                     <img src={generateImageUrl(data?.folderName, data?.coverImage)}
-                      alt={data?.collectionName}
-                      className={styles.imageCover}/>
-                :
+                         alt={data?.collectionName}
+                         className={styles.imageCover}/>
+                    :
                     <img src={generateImageUrl("user-content", "406b4b18-e432-4b70-8f17-39f0d48e8855.png")}
                          alt={data?.collectionName}
                          className={styles.imageCover}/>}
                 <div className={styles.imageDes}>
-                    <p>{data?.collectionName}</p>
-                    <span><ClockIcon width={14} height={14}/>
-                        {moment(data?.createAt).format(dateFormat)}</span>
+                    <div className={styles.top}>
+                        <span>{generateDate(data?.createAt)}</span>
+                        <p>{data?.collectionName}</p>
+                    </div>
+
+                    <div className={styles.bottom}>
+                        <ChevronIcon/>
+                    </div>
                 </div>
             </div>
         </Link>

@@ -9,8 +9,8 @@ import ProfileActive from "@assets/icons/profile-active.svg";
 import styles from "./NavigationBottom.module.scss";
 import {paths} from "@constants";
 import classnames from "classnames";
-import useAuth from "@hooks/useAuth";
 import {useRouter} from "next/router";
+import useAuth from "../../../hooks/useAuth";
 
 export const navigationTab = {
     HOME: 'home',

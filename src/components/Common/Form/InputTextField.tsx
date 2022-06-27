@@ -12,15 +12,15 @@ type InputTextFieldType = {
     disabled?: boolean;
     className?: string;
     type: string;
-    onChange?: EventHandler;
+    onChange?: EventHandler<any>;
     hideErrorMessage?: boolean;
     sizeLg?: boolean;
     fullBorder?: boolean;
-    autoComplete?: InputHTMLAttributes;
+    autoComplete?: string | undefined;
     name: string;
     required?: boolean;
     props?: any;
-}
+};
 
 const InputTextField: React.FC<InputTextFieldType> = ({
                                                           iconLeft,
@@ -40,7 +40,7 @@ const InputTextField: React.FC<InputTextFieldType> = ({
     const [field, meta, helpers] = useField(props);
     const isError = meta.touched && meta.error
 
-    const onChangeValue = (evt) => {
+    const onChangeValue = (evt: any) => {
         const value = evt.target.value;
         helpers?.setValue(value || '');
         onChange && onChange(value);
@@ -77,7 +77,7 @@ const InputTextField: React.FC<InputTextFieldType> = ({
                     disabled={disabled}
                     autoComplete={autoComplete}
                     className={classNames({
-                        [className]: !!className,
+                        [`${className}`]: !!className,
                         [styles.hasIconLeft]: !!iconLeft,
                         [styles.hasIconRight]: !!iconRight
                     })}

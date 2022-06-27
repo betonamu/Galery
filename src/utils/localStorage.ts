@@ -19,20 +19,20 @@ export const getObjectData = (key: string) => {
     return false;
 }
 
-export const setStringData = (key: string, value: any) => {
+export const setStringData = (key: string, value: string): void => {
     if (typeof window !== 'undefined' && window.localStorage) {
         window.localStorage.setItem(key, value);
     }
 }
 
-export const getStringData = (key: string) => {
+export const getStringData = (key: string): string | null => {
     if (typeof window !== 'undefined' && window.localStorage) {
         return window.localStorage.getItem(key);
     }
-    return false;
+    return '';
 }
 
-export const removeItem = (key: string) => {
+export const removeItem = (key: string): void => {
     if (typeof window !== 'undefined' && window.localStorage) {
         window.localStorage.removeItem(key);
     }

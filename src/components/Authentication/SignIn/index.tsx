@@ -3,18 +3,19 @@ import * as Yup from 'yup';
 import {useDispatch} from "react-redux";
 import {useRouter} from "next/router";
 
-import BasicForm from "../../Common/Control/BasicForm";
-import InputTextField from "../../Common/Form/InputTextField";
-import Container from "../../Common/Container";
-import Button from "../../Common/Control/Button";
-import {accountActions} from "../../../redux/actions";
-import {paths, storageKeys} from "../../../constants";
-
-import UserIcon from "../../../assets/icons/user-gray.svg";
-
-import styles from "./SignIn.module.scss";
+import BasicForm from "@components/Common/Control/BasicForm";
+import InputTextField from "@components/Common/Form/InputTextField";
+import Container from "@components//Common/Container";
+import Button from "@components/Common/Control/Button";
+import {accountActions} from "@redux/actions";
+import {paths, storageKeys} from "@constants";
 import {ResponseApi} from "@common/Models/ApiModels";
 import {FormikInitType} from "@common/Models/Formik";
+
+import UserIcon from "@assets/icons/user-gray.svg";
+
+import styles from "./SignIn.module.scss";
+
 
 const SignInForm = () => {
     const [errorMsg, setErrorMsg] = useState([]);

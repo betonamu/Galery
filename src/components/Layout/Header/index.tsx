@@ -1,18 +1,16 @@
-import React, {useEffect, useLayoutEffect, useState} from "react";
+import React, {useState} from "react";
 import Link from "next/link";
 import {useDispatch} from "react-redux";
 import {useRouter} from "next/router";
+import classNames from "classnames";
 
 import {accountActions} from "@redux/actions";
-
 import {paths, storageKeys} from "@constants";
+import useAuth from "@hooks/useAuth";
+import useDarkMode from "@hooks/useDarkMode";
+import DropdownMenu from "@components/Common/DropdownMenu";
 
 import styles from "./Header.module.scss";
-import classNames from "classnames";
-import useAuth from "../../../hooks/useAuth";
-import useDarkMode from "../../../hooks/useDarkMode";
-import DropdownMenu from "../../Common/DropdownMenu";
-
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -20,12 +18,12 @@ const Header = () => {
     const {user, isAuthenticated} = useAuth();
     const {switchTheme, isDarkMode} = useDarkMode();
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const onLogout = () => {
         dispatch(accountActions.logout({
             onCompleted: () => {
-                push({path: paths.home}).then();
+                push(paths.home).then();
             }
         }))
     }

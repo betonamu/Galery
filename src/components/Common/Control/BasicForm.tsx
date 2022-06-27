@@ -4,7 +4,7 @@ import {Formik, Form} from 'formik';
 import {FormikInitType} from "@common/Models/Formik";
 
 type CustomFormikProps = {
-    children?: JSX.Element | JSX.Element[];
+    children?: ReactElement;
     initialValues: FormikInitType<any>;
     onSubmit: any;
     validationSchema: any;

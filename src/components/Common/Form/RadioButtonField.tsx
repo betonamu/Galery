@@ -1,13 +1,15 @@
-import React, {ChangeEventHandler, ReactChildren} from 'react';
+import React, {ChangeEventHandler} from 'react';
 import classNames from 'classnames';
 import {useField} from 'formik';
 
 import styles from './RadioButtonField.module.scss';
 
 interface IRadioButtonField {
-    children: ReactChildren,
+    children: React.ReactNode,
     className?: string,
     onChange: ChangeEventHandler,
+
+    [x: string]: any
 }
 
 const RadioButtonField: React.FC<IRadioButtonField> = ({
@@ -16,11 +18,11 @@ const RadioButtonField: React.FC<IRadioButtonField> = ({
                                                            onChange,
                                                            ...props
                                                        }) => {
-    const [field, meta] = useField(props);
+    const [field, meta] = useField(props.name);
 
-    const isChecked = meta.value === props.value
+    const isChecked = meta.value === props.value;
 
-    const handleChange = e => {
+    const handleChange = (e: any) => {
         field.onChange(e)
 
         onChange && onChange(e)
@@ -43,7 +45,6 @@ const RadioButtonField: React.FC<IRadioButtonField> = ({
                     {...field}
                     {...props}
                     onChange={handleChange}
-                    // onChange={handleChange}
                 />
             </label>
         </div>

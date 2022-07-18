@@ -1,10 +1,10 @@
 import React from 'react';
+import classNames from "classnames";
 
-import FacebookIcon from "@assets/icons/facebook.svg";
-import GithubIcon from "@assets/icons/github.svg";
+import FacebookIcon from "../../../assets/icons/facebook.svg";
+import GithubIcon from "../../../assets/icons/github.svg";
 
 import styles from "./Footer.module.scss";
-import classNames from "classnames";
 
 const Footer = () => {
     return (

@@ -12,11 +12,13 @@ interface IInputNumericField {
     disabled: boolean;
     className: string;
     type: string;
-    onChange: EventHandler,
+    onChange: EventHandler<any>,
     hideErrorMessage: boolean,
     sizeLg: boolean,
     fullBorder: boolean,
     autocomplete: string,
+
+    [x: string]: any
 }
 
 const InputNumericField: React.FC<IInputNumericField> = ({
@@ -34,17 +36,17 @@ const InputNumericField: React.FC<IInputNumericField> = ({
                                                              autocomplete,
                                                              ...props
                                                          }) => {
-    const [field, meta, helpers] = useField(props);
+    const [field, meta, helpers] = useField(props.name);
     const isError = meta.touched && meta.error
 
-    const onChangeValue = (evt) => {
+    const onChangeValue = (evt: any) => {
         const value = (evt.target.value || '').replace(/\D/g, '');
         const validValue = value === '' ? value : +value;
         helpers?.setValue(validValue);
         onChange && onChange(validValue);
     }
 
-    const formatDisplayValue = value => {
+    const formatDisplayValue = (value: string) => {
         return (value + '').replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
 

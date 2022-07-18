@@ -1,6 +1,12 @@
 import React from 'react'
 
-const BaseIcon = ({ color, pushRight = true, children }) => (
+type BaseIconProps = {
+  color?: string;
+  pushRight?: boolean;
+  children?: React.ReactNode
+}
+
+const BaseIcon:React.FC<BaseIconProps> = ({ color, pushRight = true, children }) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     width='24'

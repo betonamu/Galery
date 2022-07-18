@@ -1,17 +1,16 @@
 import {loadingActions} from 'src/redux/actions';
 import {call, put} from 'redux-saga/effects';
 import {handleApiResponse, sendRequest} from '@utils/api';
-import {Action, PayloadType, RequestApi} from "@common/Models/ApiModels";
+import {PayloadType, RequestApi} from "@common/Models/ApiModels";
 
 const {startLoading, finishLoading} = loadingActions;
 
-export const createSuccessActionType = (type: Action) => `${type}_SUCCESS`;
-export const createFailureActionType = (type: Action) => `${type}_FAILURE`;
+export const createSuccessActionType = (type: string) => `${type}_SUCCESS`;
+export const createFailureActionType = (type: string) => `${type}_FAILURE`;
 
 export function* processLoadingAction(options: any, {payload, type}: RequestApi<any>): any {
     const SUCCESS = createSuccessActionType(type);
     const FAILURE = createFailureActionType(type);
-    // @ts-ignore
     yield put(startLoading(type));
     try {
         const response = yield call(sendRequest, options, payload);
@@ -26,7 +25,6 @@ export function* processLoadingAction(options: any, {payload, type}: RequestApi<
             error: true
         });
     }
-    // @ts-ignore
     yield put(finishLoading(type));
 }
 
@@ -34,7 +32,7 @@ export function* processAction(options: any, {payload, type}: RequestApi<any>): 
     const SUCCESS = createSuccessActionType(type);
     const FAILURE = createFailureActionType(type);
     try {
-        const response = yield call(sendRequest, options, payload);
+        const response: any = yield call(sendRequest, options, payload);
         yield put({
             type: response.success ? SUCCESS : FAILURE,
             payload: response.responseData

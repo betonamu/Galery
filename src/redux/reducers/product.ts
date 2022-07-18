@@ -13,16 +13,16 @@ const initialState = {
 
 const product = handleActions(
     {
-        [HYDRATE]: (state, action) => {
+        [HYDRATE]: (state, action: any) => {
             return {...state, ...action.payload.product}
         },
-        [createSuccessActionType(GET_COLLECTION_BY_ID)]: (state, action) => {
+        [createSuccessActionType(GET_COLLECTION_BY_ID)]: (state, action: any) => {
             return {
                 ...state,
                 collection: action.payload.resultObj
             };
         },
-        [createSuccessActionType(GET_ALL_MODEL)]: (state, action) => {
+        [createSuccessActionType(GET_ALL_MODEL)]: (state, action: any) => {
             return {
                 ...state,
                 models: action.payload.resultObj

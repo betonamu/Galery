@@ -1,10 +1,10 @@
-import React, {ReactElement} from 'react';
+import React, {ReactElement, ReactNode} from 'react';
 import {Formik, Form} from 'formik';
 
 import {FormikInitType} from "@common/Models/Formik";
 
 type CustomFormikProps = {
-    children?: ReactElement;
+    children?: ReactNode;
     initialValues: FormikInitType<any>;
     onSubmit: any;
     validationSchema: any;

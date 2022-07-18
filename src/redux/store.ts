@@ -1,31 +1,37 @@
+import {applyMiddleware, createStore, compose} from 'redux';
+import {createWrapper} from 'next-redux-wrapper';
+import createSagaMiddleware, {SagaMiddleware} from 'redux-saga'
 
-import { applyMiddleware, createStore, compose } from 'redux';
-import {createWrapper } from 'next-redux-wrapper';
-import createSagaMiddleware from 'redux-saga'
-
+import {ssrMode} from '@constants';
 import rootSaga from './sagas';
-import rootReducer    from './reducers';
-import { ssrMode } from '@constants';
+import rootReducer from './reducers';
+import {any} from "prop-types";
 
-const getMiddleWare = (sagaMiddleware: any) => {
-   if (process.env.NODE_ENV === 'development') {
-      const composeEnhancers = ssrMode ? compose : window?.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+declare global {
+    interface Window {
+        __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+    }
+}
 
-      return composeEnhancers(applyMiddleware(sagaMiddleware));
-   }
+const getMiddleWare = (sagaMiddleware: SagaMiddleware) => {
+    if (process.env.NODE_ENV === 'development') {
+        const composeEnhancers = ssrMode ? compose : window?.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-   return applyMiddleware(sagaMiddleware);
+        return composeEnhancers(applyMiddleware(sagaMiddleware));
+    }
+
+    return applyMiddleware(sagaMiddleware);
 }
 
 const makeStore = (initialState: any) => {
-   const sagaMiddleware = createSagaMiddleware();
-   const store = createStore(
-      rootReducer,
-      initialState,
-      getMiddleWare(sagaMiddleware)
-   );
-   store.sagaTask = sagaMiddleware.run(rootSaga);
-   return store;
+    const sagaMiddleware = createSagaMiddleware();
+    const store: any = createStore(
+        rootReducer,
+        initialState,
+        getMiddleWare(sagaMiddleware)
+    );
+    store.sagaTask = sagaMiddleware.run(rootSaga);
+    return store;
 };
 
 export const wrapper = createWrapper(makeStore, {debug: false});

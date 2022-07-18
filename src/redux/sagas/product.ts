@@ -7,15 +7,15 @@ import {RequestApi} from "@common/Models/ApiModels";
 
 const {GET_COLLECTION_BY_ID, GET_ALL_MODEL, CREATE_COLLECTION} = productActionTypes;
 
-const getCollectionById = (payload: RequestApi<any>) => {
+const getCollectionById = (payload: RequestApi) => {
     return processLoadingAction(apiConfig.collection.getAllCollection, payload);
 }
 
-const getAllModel = (payload: RequestApi<any>) => {
+const getAllModel = (payload: RequestApi) => {
     return processLoadingAction(apiConfig.model.getAllModel, payload);
 }
 
-const createCollection = ({payload}: RequestApi<any>) => {
+const createCollection = ({payload}: RequestApi) => {
     return processCallbackAction(apiConfig.collection.createCollection, payload);
 }
 

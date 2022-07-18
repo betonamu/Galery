@@ -9,7 +9,7 @@ import {RequestApi} from "@common/Models/ApiModels";
 
 const {LOGOUT, SIGN_IN} = accountActionTypes;
 
-function* signInSaga({payload: {params, onCompleted, onError}}: any): any {
+function* signInSaga({payload: {params, onCompleted, onError}}: RequestApi): any {
     try {
         const result = yield call(sendRequest, apiConfig.authenticate.signIn, params);
         if (result?.success) {
@@ -20,14 +20,14 @@ function* signInSaga({payload: {params, onCompleted, onError}}: any): any {
             }
             handleApiResponse(result, onCompleted, onError);
         } else {
-            onError(result?.responseData.resultObj);
+            onError?.(result?.responseData.resultObj);
         }
     } catch (error) {
-        onError(error);
+        onError?.(error);
     }
 }
 
-function* logoutSaga({payload: {onCompleted}}: RequestApi<any>) {
+function* logoutSaga({payload: {onCompleted}}: RequestApi): Generator {
     removeItem(storageKeys.USER_TOKEN);
     removeItem(storageKeys.USER_DATA);
     yield put(accountActions.setProfile({data: {}}))

@@ -1,11 +1,12 @@
 import React, {HTMLAttributes} from 'react';
+import {AlertTemplateProps} from "react-alert";
 
-import InfoIcon from './icons/InfoIcon';
-import SuccessIcon from './icons/SuccessIcon';
-import ErrorIcon from './icons/ErrorIcon';
-import CloseIcon from './icons/CloseIcon';
+import InfoIcon from 'src/components/Common/AlertTemplete/icons/InfoIcon';
+import SuccessIcon from 'src/components/Common/AlertTemplete/icons/SuccessIcon';
+import ErrorIcon from 'src/components/Common/AlertTemplete/icons/ErrorIcon';
+import CloseIcon from 'src/components/Common/AlertTemplete/icons/CloseIcon';
 
-const alertStyle = {
+const alertStyle: React.CSSProperties = {
     backgroundColor: '#fff',
     color: '#333333',
     fontWeight: '500',
@@ -21,7 +22,7 @@ const alertStyle = {
     boxSizing: 'border-box'
 }
 
-const buttonStyle = {
+const buttonStyle: React.CSSProperties = {
     marginLeft: '20px',
     border: 'none',
     backgroundColor: 'transparent',
@@ -29,14 +30,7 @@ const buttonStyle = {
     color: '#FFFFFF'
 }
 
-interface IAlertTemplate {
-    message?: string;
-    options: { type: string };
-    style: HTMLAttributes<any>;
-    close: any;
-}
-
-const AlertTemplate: React.FC<IAlertTemplate> = ({message, options, style, close}) => {
+const AlertTemplate: React.FC<AlertTemplateProps> = ({message, options, style, close}) => {
     return (
         <div style={{...alertStyle, ...style}}>
             {options.type === 'info' && <InfoIcon/>}

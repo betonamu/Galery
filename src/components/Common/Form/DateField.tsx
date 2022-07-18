@@ -1,9 +1,9 @@
 import React, {ChangeEventHandler} from 'react';
 import classNames from 'classnames';
 import {useField} from 'formik';
-import moment from 'moment';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
+// @ts-ignore
 import DatePicker from 'react-date-picker/dist/entry.nostyle';
 import styles from './DateField.module.scss';
 
@@ -18,6 +18,8 @@ interface IDateField {
     onChange: ChangeEventHandler;
     hideErrorMessage: boolean;
     format: string;
+
+    [x: string]: any
 }
 
 const DateField: React.FC<IDateField> = ({
@@ -31,7 +33,7 @@ const DateField: React.FC<IDateField> = ({
                                              format = "dd/MM/y",
                                              ...props
                                          }) => {
-        const [field, meta, helpers] = useField(props);
+        const [field, meta, helpers] = useField(props.name);
         const isError = meta.touched && meta.error;
 
         const onChangeValue = (value: any) => {

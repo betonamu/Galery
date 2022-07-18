@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import Container from "@components/Common/Container";
 import InputTextField from "@components/Common/Form/InputTextField";
 import BasicForm from "@components/Common/Control/BasicForm";
-import SelectField from "@Components/Common/Form/SelectField";
+import SelectField from "@components/Common/Form/SelectField";
 import {productActions} from "@redux/actions";
 import UploadFileField from "@components/Common/Form/UploadFileField";
 import Button from "@components/Common/Control/Button";
@@ -27,18 +27,18 @@ const CreateCollection: React.FC = () => {
 
     const models = useSelectorTyped(state => state.product?.models);
 
-    const onSubmit = (values: any, {resetForm}) => {
+    const onSubmit = (values: any, {resetForm}: any) => {
         setIsSubmitting(true);
         values.fileObjects = {imagesUpload: values.imagesUpload};
 
         dispatch(productActions.createCollection({
             params: values,
-            onCompleted: (response: ResponseApi<{}>) => {
+            onCompleted: (response: ResponseApi) => {
                 setIsSubmitting(false);
                 resetForm();
                 showSuccess("Create Successful");
             },
-            onError: (error: ResponseApi<{}>) => {
+            onError: (error: ResponseApi) => {
                 // setErrorMsg(error);
                 console.log(error)
                 setIsSubmitting(false);

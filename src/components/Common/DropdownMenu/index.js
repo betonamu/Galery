@@ -9,8 +9,8 @@ const DropdownMenu = ({dropdownName, dropdownItems = []}) => {
                 {dropdownName}
             </a>
             <ul className="dropdown-menu">
-                {dropdownItems.map(item => (
-                    <Link href={item?.url}>
+                {dropdownItems.map((item, index) => (
+                    <Link href={item?.url} key={index}>
                         <li><a className="dropdown-item" href="#" onClick={item?.onClick}>{item?.name}</a></li>
                     </Link>
                 ))}

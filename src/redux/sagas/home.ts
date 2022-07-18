@@ -7,7 +7,7 @@ import {RequestApi} from "@common/Models/ApiModels";
 
 const {GET_ALL_COLLECTION} = homeActionTypes;
 
-const getAllCollection = (payload: RequestApi<any>) => {
+const getAllCollection = (payload: RequestApi) => {
     return processLoadingAction(apiConfig.collection.getAllCollection, payload);
 }
 

@@ -1,11 +1,12 @@
 import {END} from 'redux-saga';
-import { transitions, positions, Provider as AlertProvider } from 'react-alert';
+import {AppInitialProps} from "next/app";
+import {transitions, positions, Provider as AlertProvider} from 'react-alert';
 
 import {wrapper} from '@redux/store';
 import Layout from "@components/Layout";
-import {NextQueryParamProvider} from "@hocs/NextQueryParamProviderComponent";
 import {homeActions} from "@/redux/actions";
-import AlertTemplate from "@components/common/AlertTemplete";
+import AlertTemplate from "@components/Common/AlertTemplete";
+import {NextQueryParamProvider} from "@hocs/NextQueryParamProviderComponent";
 
 import '../assets/scss/index.scss';
 
@@ -30,17 +31,19 @@ const MyApp = ({Component, pageProps}: any) => {
     );
 }
 
-MyApp.getInitialProps = wrapper.getInitialAppProps(store => async ({Component, ctx}:any) => {
-    if (Component.getInitialProps) {
-        await Component.getInitialProps(ctx);
-    }
+MyApp.getInitialProps = wrapper.getInitialAppProps(store =>
+    async ({Component, ctx}: any): Promise<AppInitialProps & { pageProps: any }> => {
+        if (Component.getInitialProps) {
+            await Component.getInitialProps(ctx);
+        }
 
-    // 2. Stop the saga if on server
-    if (ctx.req) {
-        await store.dispatch(homeActions.getAllCollection());
-        await store.dispatch(END);
-        await store.sagaTask.toPromise();
-    }
-});
+        // 2. Stop the saga if on server
+        if (ctx.req) {
+            await store.dispatch(homeActions.getAllCollection());
+            await store.dispatch(END);
+            await store.sagaTask.toPromise();
+        }
+        return ctx;
+    });
 
 export default wrapper.withRedux(MyApp);

@@ -1,19 +1,17 @@
-import {date} from "yup";
-
-export type ResponseApi<T> = {
+export type ResponseApi<T = {}> = {
     response: T;
     isLoading?: boolean;
 }
 
-export type RequestApi<T> = {
+export type RequestApi<T = {}> = {
     payload: PayloadType;
-    type: Action;
+    type: string;
 }
 
 export type PayloadType = {
     params: any;
-    onCompleted?: () => void
-    onError?: (error: any) => void
+    onCompleted?: (result?: any) => void
+    onError?: (error?: any) => void
 }
 
 export type Action = {

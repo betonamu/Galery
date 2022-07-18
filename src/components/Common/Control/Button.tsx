@@ -1,9 +1,9 @@
-import React, {MouseEventHandler, ReactChildren} from 'react';
+import React, {MouseEventHandler} from 'react';
 import classNames from 'classnames';
 import ClipLoader from "react-spinners/ClipLoader";
+import css from "@emotion/css";
 
 import styles from './Button.module.scss'
-import css from "@emotion/css";
 
 type ButtonType = {
     primary?: boolean;
@@ -11,7 +11,7 @@ type ButtonType = {
     gray?: boolean;
     type?: any;
     onClick?: MouseEventHandler;
-    children: ReactChildren | string;
+    children: React.ReactNode | string;
     className?: any;
     loading?: boolean;
     disabled?: boolean;

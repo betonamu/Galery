@@ -5,7 +5,7 @@ import {useRouter} from "next/router";
 
 import BasicForm from "@components/Common/Control/BasicForm";
 import InputTextField from "@components/Common/Form/InputTextField";
-import Container from "@components//Common/Container";
+import Container from "@components/Common/Container";
 import Button from "@components/Common/Control/Button";
 import {accountActions} from "@redux/actions";
 import {paths, storageKeys} from "@constants";
@@ -26,11 +26,11 @@ const SignInForm = () => {
         console.log(values)
         dispatch(accountActions.signIn({
             params: values,
-            onCompleted: (data: ResponseApi<any>) => {
+            onCompleted: (data: ResponseApi) => {
                 console.log({data})
                 push(paths.home).then();
             },
-            onError: (error: ResponseApi<any>) =>{
+            onError: (error: ResponseApi) =>{
                 console.log(error)
             }
         }))

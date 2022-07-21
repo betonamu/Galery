@@ -34,7 +34,7 @@ const Header = () => {
                 <div className="d-flex justify-content-between align-items-center">
                     <div/>
                     <label className="switch">
-                        <input type="checkbox" onChange={(e) => switchTheme(e)} checked={isDarkMode}/>
+                        <input type="checkbox" onChange={(e) => switchTheme(e.target.checked)} checked={isDarkMode}/>
                         <span className="slider round"/>
                     </label>
                 </div>

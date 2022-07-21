@@ -76,7 +76,7 @@ const NavigationBottom = () => {
                     || (item.value && item.value === tabActive);
 
                 return (
-                    <div className={styles.navigationItem} onClick={() => navigation(item)}>
+                    <div key={index} className={styles.navigationItem} onClick={() => navigation(item)}>
                         <div className={styles.iconWrapper}>
                                 <span className={classnames({
                                     [styles.iconActive]: isActive

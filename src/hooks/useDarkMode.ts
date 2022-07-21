@@ -25,7 +25,7 @@ const useDarkMode = (): DarkModeReturnType => {
         }
     }
 
-    const switchTheme = ({target: {checked}}: any) => {
+    const switchTheme = (checked: boolean) => {
         let nextTheme = '';
         let _isDarkMode: boolean;
         if (checked) {

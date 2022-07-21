@@ -16,7 +16,7 @@ const Header = () => {
     const dispatch = useDispatch();
     const {push} = useRouter();
     const {user, isAuthenticated} = useAuth();
-    const {switchTheme, isDarkMode} = useDarkMode();
+    const {onSwitchTheme, isDarkMode} = useDarkMode();
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -34,7 +34,7 @@ const Header = () => {
                 <div className="d-flex justify-content-between align-items-center">
                     <div/>
                     <label className="switch">
-                        <input type="checkbox" onChange={(e) => switchTheme(e.target.checked)} checked={isDarkMode}/>
+                        <input type="checkbox" onChange={(e) => onSwitchTheme(e.target.checked)} checked={isDarkMode}/>
                         <span className="slider round"/>
                     </label>
                 </div>

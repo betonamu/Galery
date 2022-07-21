@@ -1,4 +1,9 @@
 # GALLERY WEBAPP
+Coding convension:
+- The event, function name have to "on" prefix.
+- The function, variable name,... have to camel case.
+- Don't use var to declare variable. Use let and const instead.
+#
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

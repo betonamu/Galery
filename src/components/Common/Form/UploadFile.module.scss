@@ -43,7 +43,7 @@ $blue: #0072BC;
         @include smallScreen {
           height: 184px;
         }
-        @include tabletScreen {
+        @include mediumScreen {
           height: 350px;
         }
       }
@@ -94,7 +94,7 @@ $blue: #0072BC;
         @include smallScreen {
           font-size: 13px;
         }
-        @include tabletScreen {
+        @include mediumScreen {
           font-size: 15px;
         }
       }

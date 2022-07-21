@@ -1,6 +1,6 @@
 import {getStringData} from "@utils/localStorage";
 import {storageKeys} from "@constants";
-import {isEmptyObject} from "../utils";
+import {isEmptyObject} from "src/utils";
 import {useSelectorTyped} from "@hooks/useSelectorType";
 
 const useAuth = () => {

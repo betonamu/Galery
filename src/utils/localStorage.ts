@@ -4,7 +4,7 @@ export const setObjectData = (key: string, data: any) => {
     }
 }
 
-export const getObjectData = (key: string) => {
+export const getObjectData = (key: string): boolean | any => {
     if (typeof window !== 'undefined' && window.localStorage) {
         const jsonData = window.localStorage.getItem(key);
         if (jsonData) {
@@ -19,7 +19,7 @@ export const getObjectData = (key: string) => {
     return false;
 }
 
-export const setStringData = (key: string, value: string): void => {
+export const setStringData = (key: string, value: string) => {
     if (typeof window !== 'undefined' && window.localStorage) {
         window.localStorage.setItem(key, value);
     }
@@ -32,7 +32,7 @@ export const getStringData = (key: string): string | null => {
     return '';
 }
 
-export const removeItem = (key: string): void => {
+export const removeItem = (key: string) => {
     if (typeof window !== 'undefined' && window.localStorage) {
         window.localStorage.removeItem(key);
     }

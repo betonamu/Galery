@@ -1,12 +1,13 @@
 import {HYDRATE} from "next-redux-wrapper";
-
-import {productActionTypes} from "src/redux/actions";
 import {handleActions} from "redux-actions";
+
+import {productActionTypes} from "@redux/actions";
+import {ProductState} from "@common/Models/Redux";
 import {createSuccessActionType} from "../helper";
 
 const {GET_COLLECTION_BY_ID, GET_ALL_MODEL} = productActionTypes;
 
-const initialState = {
+const initialState: ProductState = {
     collection: {},
     models: []
 };

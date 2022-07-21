@@ -1,11 +1,10 @@
-import {applyMiddleware, createStore, compose} from 'redux';
 import {createWrapper} from 'next-redux-wrapper';
+import {applyMiddleware, createStore, compose} from 'redux';
 import createSagaMiddleware, {SagaMiddleware} from 'redux-saga'
 
 import {ssrMode} from '@constants';
 import rootSaga from './sagas';
 import rootReducer from './reducers';
-import {any} from "prop-types";
 
 declare global {
     interface Window {

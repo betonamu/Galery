@@ -3,11 +3,24 @@
 .home-wrapper {
     display: grid;
     --header-height: 56px;
-    --column: 4;
-    @include smallScreen {
-        --column: 1;
+    --column: 1;
+
+    @include largeScreen {
+        --column: 4;
     }
     grid-template-columns: repeat(var(--column), 1fr);
-    grid-column-gap: $padding * 3;
+    grid-column-gap: $s-padding * 3;
     grid-row-gap: 20px;
+
+    .mixins {
+        @include smallScreen {
+            font-size: 10px !important;
+        }
+        @include mediumScreen {
+            font-size: 50px !important;
+        }
+        @include largeScreen {
+            font-size: 90px !important;
+        }
+    }
 }

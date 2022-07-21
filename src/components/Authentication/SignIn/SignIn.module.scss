@@ -17,7 +17,7 @@
 
     .right-content {
         width: 40%;
-        padding: 0 $padding;
+        padding: 0 $s-padding;
         @include smallScreen {
             width: 100%;
             order: 1;
@@ -25,7 +25,7 @@
 
         .submit-btn {
             width: 200px;
-            margin: ($margin * 2) auto 0;
+            margin: $m-margin auto 0;
             display: flex;
             justify-content: center;
             border: 0;

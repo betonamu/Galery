@@ -15,6 +15,7 @@ const Home: React.FC = () => {
                 {collections.map((item: any, index: number) => (
                     <ModelItem data={item} key={index}/>
                 ))}
+                <h1 className={styles.mixins}>TEST MIXINS</h1>
             </div>
         </Container>
     );

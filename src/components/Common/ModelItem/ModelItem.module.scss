@@ -43,7 +43,7 @@
         .top {
             p {
                 transition: color .2s linear;
-                margin: $margin 0 0 0;
+                margin: $s-margin 0 0 0;
 
                 &:hover {
                     color: red;

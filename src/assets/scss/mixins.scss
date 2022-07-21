@@ -1,11 +1,17 @@
 @mixin smallScreen {
-    @media screen and (max-width: #{$small-screen}) {
+    @media screen and (min-width: #{$small-screen}) {
         @content;
     }
 }
 
-@mixin tabletScreen {
-    @media screen and (min-width: #{$small-screen}) and (max-width: #{$large-screen}) {
+@mixin mediumScreen {
+    @media screen and (min-width: #{$medium-screen}) {
+        @content;
+    }
+}
+
+@mixin largeScreen {
+    @media screen and (min-width: #{$large-screen}) {
         @content;
     }
 }

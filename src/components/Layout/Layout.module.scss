@@ -8,6 +8,6 @@
     .main-content {
         flex-grow: 1;
         --header-height: 120px;
-        margin: calc(20px + var(--header-height)) 0 ($margin * 2);
+        margin: calc(20px + var(--header-height)) 0 $m-margin;
     }
 }

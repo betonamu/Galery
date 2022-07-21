@@ -4,22 +4,18 @@
     display: flex;
     align-items: center;
     height: fit-content;
-    padding: ($padding * 2) 0;
     border-top: 10px solid var(--bs-dark-rgb);
-    @include smallScreen{
-        padding-bottom: 150px;
+    padding: $s-padding 0 ($l-padding * 2.5) 0;
+    @include largeScreen {
+        padding: ($s-padding * 2) 0;
     }
 
-    .copy-right{
-        @include smallScreen{
-            display: flex;
-            justify-content: center;
-        }
+    .copy-right {
+        display: flex;
+        justify-content: center;
     }
 
     .contact-icon {
-        @include smallScreen {
-            margin-bottom: $margin;
-        }
+        margin-bottom: $s-margin;
     }
 }

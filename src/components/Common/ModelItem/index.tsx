@@ -2,14 +2,18 @@ import React from "react";
 import moment from "moment";
 import Link from "next/link";
 
-import {generateImageUrl} from "@utils";
-import {dateFormat} from "@constants";
+import {generateImageUrl} from "../../../utils";
+import {Collection} from "../../../common/Models/ApiModels";
 
-import ChevronIcon from "@assets/icons/chevron.svg";
+import ChevronIcon from "../../../assets/icons/chevron.svg";
 
 import styles from "./ModelItem.module.scss";
 
-const ModelItem = ({data}) => {
+type ModelItemProps = {
+    data: Collection,
+}
+
+const ModelItem: React.FC<ModelItemProps> = ({data}) => {
     const generateDate = (date) => {
         let temp = moment(date).format("MMMM/DD/YYYY").split("/");
         return `${temp[0]} ${temp[1]}, ${temp[2]}`;

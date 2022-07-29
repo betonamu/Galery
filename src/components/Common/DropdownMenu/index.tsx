@@ -1,7 +1,12 @@
 import React from "react";
 import Link from "next/link";
 
-const DropdownMenu = ({dropdownName, dropdownItems = []}) => {
+type DropdownMenuProps = {
+    dropdownName: string;
+    dropdownItems: Array<{ url: string, name: string }>
+}
+
+const DropdownMenu: React.FC<DropdownMenuProps> = ({dropdownName, dropdownItems = []}) => {
 
     return (
         <div className="dropdown cursor-pointer">

@@ -14,7 +14,7 @@ type ModelItemProps = {
 }
 
 const ModelItem: React.FC<ModelItemProps> = ({data}) => {
-    const generateDate = (date) => {
+    const generateDate = (date: string | Date) => {
         let temp = moment(date).format("MMMM/DD/YYYY").split("/");
         return `${temp[0]} ${temp[1]}, ${temp[2]}`;
     }

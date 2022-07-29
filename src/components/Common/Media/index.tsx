@@ -1,29 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, ReactNode} from "react";
 
-import useDevices from "../../../hooks/useDevices";
+import useDevices from "@hooks/useDevices";
 
-const Desktop = ({ children }) => {
-    const { isDesktop } = useDevices();
+type MediaProps = {
+    children: ReactNode
+}
+
+const Desktop = ({children}: MediaProps) => {
+    const {isDesktop} = useDevices();
     const [content, setContent] = useState(children);
+
     useEffect(() => {
         if (isDesktop) {
             setContent(children);
-        }
-        else {
+        } else {
             setContent(null);
         }
     }, [children, isDesktop])
     return content || <></>;
 }
 
-const Mobile = ({ children }) => {
-    const { isDesktop, isMobile } = useDevices();
-    const [content, setContent] = useState();
+const Mobile = ({children}: MediaProps) => {
+    const {isDesktop, isMobile} = useDevices();
+    const [content, setContent] = useState<ReactNode>();
+
     useEffect(() => {
         if (!isDesktop) {
             setContent(children);
-        }
-        else {
+        } else {
             setContent(null);
         }
     }, [children, isDesktop])

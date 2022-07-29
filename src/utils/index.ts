@@ -1,4 +1,5 @@
 import {imagesUrl} from "@constants";
+import {ObjectStrKey} from "@common/Models/ApiModels";
 
 export const generateImageUrl = (folderName: string, imageName: string) => {
     if (imageName && imageName) {
@@ -13,3 +14,14 @@ export function isEmptyObject(obj: Object) {
     }
     return true;
 }
+
+export const cleanObject = (obj: ObjectStrKey) => {
+    let result: ObjectStrKey = {};
+    if (obj) {
+        Object.keys(obj).forEach((key) => {
+            if ((!Array.isArray(obj[key]) && obj[key]) || obj[key]?.length)
+                result[key] = obj[key];
+        });
+    }
+    return result;
+};

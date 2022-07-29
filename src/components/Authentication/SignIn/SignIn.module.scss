@@ -3,24 +3,25 @@
 .sign-in-wrapper {
     display: flex;
     column-gap: 50px;
-    @include smallScreen {
-        flex-direction: column;
+    flex-direction: column;
+    @include largeScreen {
+        flex-direction: row;
     }
 
     .left-content {
-        width: 60%;
-        @include smallScreen {
-            width: 100%;
-            order: 2;
+        width: 100%;
+        @include largeScreen {
+            order: 1;
+            width: 60%;
         }
     }
 
     .right-content {
-        width: 40%;
         padding: 0 $s-padding;
-        @include smallScreen {
-            width: 100%;
-            order: 1;
+        width: 100%;
+        @include largeScreen {
+            order: 2;
+            width: 40%;
         }
 
         .submit-btn {

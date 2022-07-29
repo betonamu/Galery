@@ -11,7 +11,7 @@ import {productActions} from "@redux/actions";
 import UploadFileField from "@components/Common/Form/UploadFileField";
 import Button from "@components/Common/Control/Button";
 import useNotification from "@hooks/useNotification";
-import {ResponseApi} from "@common/Models/ApiModels";
+import {CollectionRequest, ResponseApi} from "@common/Models/ApiModels";
 import {useSelectorTyped} from "@hooks/useSelectorType";
 
 import BackIcon from "@assets/icons/chevron.svg";
@@ -27,7 +27,7 @@ const CreateCollection: React.FC = () => {
 
     const models = useSelectorTyped(state => state.product?.models);
 
-    const onSubmit = (values: any, {resetForm}: any) => {
+    const onSubmit = (values: CollectionRequest, {resetForm}: any) => {
         setIsSubmitting(true);
         values.fileObjects = {imagesUpload: values.imagesUpload};
 
@@ -60,7 +60,7 @@ const CreateCollection: React.FC = () => {
                         description: '',
                         folderName: '',
                         imagesUpload: [],
-                    } as any}
+                    } as CollectionRequest}
                     onSubmit={onSubmit}
                     validationSchema={Yup.object().shape({
                         collectionName: Yup.string()

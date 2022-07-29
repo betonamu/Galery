@@ -24,10 +24,10 @@
     row-gap: var(--row-gap);
 
     > div {
-      width: calc(50% - var(--column-gap)) !important;
-      margin-top: 0;
+      width: 100% !important;
       @include smallScreen {
-        width: 100% !important;
+        margin-top: 0;
+        width: calc(50% - var(--column-gap)) !important;
       }
     }
 

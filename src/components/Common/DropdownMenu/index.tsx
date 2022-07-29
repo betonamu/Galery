@@ -1,9 +1,9 @@
-import React from "react";
+import React, {MouseEventHandler} from "react";
 import Link from "next/link";
 
 type DropdownMenuProps = {
     dropdownName: string;
-    dropdownItems: Array<{ url: string, name: string }>
+    dropdownItems: Array<{ url: string, name: string, onClick?: MouseEventHandler }>;
 }
 
 const DropdownMenu: React.FC<DropdownMenuProps> = ({dropdownName, dropdownItems = []}) => {

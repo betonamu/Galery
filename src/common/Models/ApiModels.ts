@@ -1,3 +1,5 @@
+import {any} from "prop-types";
+
 export type ResponseApi<T = {}> = {
     response: T;
     isLoading?: boolean;
@@ -18,11 +20,24 @@ export type Action = {
     type: string;
 }
 
+export type ObjectStrKey = {
+    [x: string]: any
+}
+
 export type Collection = {
     id: number;
     collectionName: string;
-    createDate: Date;
+    createAt: Date;
     folderName: string;
     coverImage: string;
     images: string[];
+}
+
+export type CollectionRequest = {
+    collectionName: string;
+    modelId: string;
+    description: string;
+    folderName: string;
+    imagesUpload: Array<any>;
+    fileObjects?: {};
 }

@@ -16,8 +16,8 @@ const baseUrl = "/";
 
 export const paths = {
     home: baseUrl,
-    signIn : `${baseUrl}accounts/sign-in`,
-    profile : `${baseUrl}accounts`,
+    signIn: `${baseUrl}accounts/sign-in`,
+    profile: `${baseUrl}accounts`,
     createCollection: `${baseUrl}collections/management/create`,
     collectionList: `${baseUrl}collections/management/`,
 }
@@ -32,3 +32,12 @@ export const THEME_DOM_KEY = 'data-theme';
 export const phoneRegExp = /^(03|05|07|08|09|01[2|6|8|9]){1}([0-9]{8})$/;
 
 export const dateFormat = "DD/MM/YYYY";
+
+export const metaDefaults = ({origin, href}: any) => ({
+    description: "Nothing",
+    // image: `${ssrMode ? origin : window.location.origin}/images/thumbnail-seo.png`,
+    image: '',
+    title: "Xiuren Gallery",
+    type: "website",
+    url: ssrMode ? href : window.location.origin,
+});

@@ -14,11 +14,10 @@ const initialState: HomeState = {
 
 const home = handleActions(
     {
-        [HYDRATE]: (state: any, action: any) => {
-            console.log({state})
-            return {...state, ...action.payload.home}
+        [HYDRATE]: (state, action: any) => {
+            return {...state, ...action.payload.home};
         },
-        [createSuccessActionType(GET_ALL_COLLECTION)]: (state: any, action: any) => {
+        [createSuccessActionType(GET_ALL_COLLECTION)]: (state, action: any) => {
             return {
                 ...state,
                 collections: action.payload.resultObj || []

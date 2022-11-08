@@ -1,4 +1,4 @@
-import React, {MouseEventHandler} from "react";
+import React, {MouseEventHandler, useState} from "react";
 import Link from "next/link";
 
 type DropdownMenuProps = {
@@ -7,7 +7,6 @@ type DropdownMenuProps = {
 }
 
 const DropdownMenu: React.FC<DropdownMenuProps> = ({dropdownName, dropdownItems = []}) => {
-
     return (
         <div className="dropdown cursor-pointer">
             <a className="nav-link dropdown-toggle">

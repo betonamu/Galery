@@ -1,0 +1,57 @@
+@import "../../../assets/scss/global.scss";
+.breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 1rem 0;
+
+    .item {
+        display: flex;
+        align-items: center;
+        color: var(--black);
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 20px;
+        opacity: 0.3;
+        a {
+            color: var(--black);
+            text-decoration: none !important;
+        }
+
+        @include smallScreen {
+            font-size: 1rem;
+        }
+
+        &::before {
+            font-size: 1rem;
+        }
+    }
+
+    .item-active {
+        opacity: 1 !important;
+        font-weight: $font-weight-500;
+    }
+
+    .item + .item {
+        padding-left: 0.5rem;
+    }
+
+    .item + .item::before {
+        float: left;
+        margin-bottom: 7px;
+        padding-right: 0.5rem;
+        content: url("/icons/breadcrumb-dot.svg");
+    }
+}
+
+.breadcrumb-item + .breadcrumb-item {
+    padding-left: 0.5rem;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    float: left;
+    margin-bottom: 7px;
+    padding-right: 0.5rem;
+    content: url("/icons/breadcrumb-dot.svg");
+}

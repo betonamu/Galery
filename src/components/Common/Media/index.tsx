@@ -6,7 +6,7 @@ type MediaProps = {
     children: ReactNode
 }
 
-const Desktop = ({children}: MediaProps) => {
+const Desktop = ({children}: MediaProps): any => {
     const {isDesktop} = useDevices();
     const [content, setContent] = useState(children);
 
@@ -20,7 +20,7 @@ const Desktop = ({children}: MediaProps) => {
     return content || <></>;
 }
 
-const Mobile = ({children}: MediaProps) => {
+const Mobile = ({children}: MediaProps): any => {
     const {isDesktop, isMobile} = useDevices();
     const [content, setContent] = useState<ReactNode>();
 

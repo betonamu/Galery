@@ -25,3 +25,9 @@ export const cleanObject = (obj: ObjectStrKey) => {
     }
     return result;
 };
+
+export const countSingleCharacter = (str: string, keyword: string) => {
+    if (!str || keyword.length > 1)
+        return;
+    return [...str].filter(item => item === keyword).length;
+}

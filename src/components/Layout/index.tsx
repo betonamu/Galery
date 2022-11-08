@@ -8,7 +8,7 @@ import {Mobile} from "../Common/Media";
 
 import styles from "./Layout.module.scss";
 
-const Layout = ({children}) => {
+const Layout = ({children}: any) => {
     return (
         <div className={styles.mainLayout}>
             <Header/>

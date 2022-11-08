@@ -23,7 +23,6 @@ const SignInForm = () => {
     const {push} = useRouter();
 
     const onSubmitSignIn = (values: FormikInitType<any>) => {
-        console.log(values)
         dispatch(accountActions.signIn({
             params: values,
             onCompleted: (data: ResponseApi) => {

@@ -1,5 +1,6 @@
 import {END} from 'redux-saga';
 import {transitions, positions, Provider as AlertProvider} from 'react-alert';
+import {SWRConfig} from 'swr'
 
 import {wrapper} from '@redux/store';
 import Layout from "@components/Layout";
@@ -8,7 +9,6 @@ import {homeActions} from "@/redux/actions";
 import AlertTemplate from "@components/Common/AlertTemplete";
 
 import '../assets/scss/index.scss';
-import {AppInitialProps} from "next/app";
 
 const alertOptions = {
     // you can also just use 'bottom center'
@@ -19,13 +19,21 @@ const alertOptions = {
     transition: transitions.FADE,
 }
 
+// const fetcher = (input: RequestInfo, init?: RequestInit) => fetch(input, init).then((res: any) => res.json());
+const fetcher = (...args: [RequestInfo, RequestInit]) => {
+    fetch(...args).then((res: any) => res.json());
+    console.log(...args);
+};
+
 const MyApp = ({Component, pageProps}: any) => {
     return (
         <NextQueryParamProvider>
             <AlertProvider template={AlertTemplate} {...alertOptions}>
-                <Layout>
-                    <Component {...pageProps} />
-                </Layout>
+                <SWRConfig value={{fetcher}}>
+                    <Layout>
+                        <Component {...pageProps} />
+                    </Layout>
+                </SWRConfig>
             </AlertProvider>
         </NextQueryParamProvider>
     );
@@ -39,7 +47,7 @@ MyApp.getInitialProps = wrapper.getInitialAppProps(store =>
 
         // 2. Stop the saga if on server
         if (ctx.req) {
-            await store.dispatch(homeActions.getAllCollection());
+            //await store.dispatch(homeActions.getAllCollection());
             await store.dispatch(END);
             await store.sagaTask.toPromise();
         }

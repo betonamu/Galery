@@ -1,8 +1,6 @@
 import React, {useEffect} from "react";
 
-import Home from "../components/Home";
-import {homeActions} from "@redux/actions";
-import {wrapper} from "@redux/store";
+import Home from "@components/Home";
 
 const HomePage = () => {
     return (
@@ -10,8 +8,8 @@ const HomePage = () => {
     )
 }
 
-HomePage.getInitialProps = wrapper.getInitialPageProps(store => () => {
-    store.dispatch(homeActions.getAllCollection());
-});
+// HomePage.getInitialProps = wrapper.getInitialPageProps(store => () => {
+//     store.dispatch(homeActions.getAllCollection());
+// });
 
 export default HomePage;

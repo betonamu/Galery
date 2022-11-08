@@ -1,16 +1,21 @@
 import React, {useState} from "react";
 import Link from "next/link";
-import {useDispatch} from "react-redux";
-import {useRouter} from "next/router";
 import classNames from "classnames";
+import {useRouter} from "next/router";
+import {useDispatch} from "react-redux";
 
-import {accountActions} from "@redux/actions";
 import {paths} from "@constants";
 import useAuth from "@hooks/useAuth";
 import useDarkMode from "@hooks/useDarkMode";
+import {accountActions} from "@redux/actions";
+import {Desktop, Mobile} from "@components/Common/Media";
+import HamburgerMenu from "./HamburgerMenu";
 import DropdownMenu from "@components/Common/DropdownMenu";
 
+import HamburgerIcon from "@assets/icons/hamburger-cat-menu.svg";
+
 import styles from "./Header.module.scss";
+import {useOutsideClick} from "@hooks/useOutsideClick";
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -19,6 +24,7 @@ const Header = () => {
     const {onSwitchTheme, isDarkMode} = useDarkMode();
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    // const ref = useOutsideClick(() => setIsOpen(false), isOpen);
 
     const onLogout = () => {
         dispatch(accountActions.logout({
@@ -26,7 +32,53 @@ const Header = () => {
                 push(paths.home).then();
             }
         }))
-    }
+    };
+
+    const dropdownItems = {
+        studioCategories: [
+            {
+                name: 'Action',
+                url: "",
+            },
+            {
+                name: 'Another action',
+                url: "",
+            },
+            {
+                name: 'Something else here',
+                url: "",
+            },
+        ],
+        collections: [
+            {
+                name: 'Create Collection',
+                url: paths.createCollection,
+            },
+            {
+                name: 'List Collections',
+                url: paths.collectionList,
+            },
+            {
+                name: 'Something else here',
+                url: "",
+            },
+        ],
+        account: [
+            {
+                name: 'Action',
+                url: "",
+            },
+            {
+                name: 'Another action',
+                url: "",
+            },
+            {
+                name: 'Logout',
+                url: "",
+                onClick: onLogout,
+            },
+        ]
+    };
 
     return (
         <div className={styles.header}>
@@ -41,74 +93,53 @@ const Header = () => {
             </div>
             <nav className={classNames("navbar navbar-expand-lg position-relative", {
                 "navbar-light bg-light": !isDarkMode,
-                "navbar-dark bg-dark": isDarkMode
+                "navbar-dark bg-dark": isDarkMode,
             })}>
                 <div className="container">
-                    <Link href={paths.home}><a className="navbar-brand">GALLERY WEBSITE</a></Link>
+                    <Desktop>
+                        <Link href={paths.home}><a className="navbar-brand">MY PROFILE</a></Link>
+                    </Desktop>
+                    <Mobile>
+                        <Link href={paths.home}>
+                            <a className="navbar-brand d-flex align-items-center">
+                                <HamburgerIcon
+                                    stroke={isDarkMode ? "white" : ''}
+                                    fill={isDarkMode ? "white" : ''}
+                                    className="me-2"
+                                    onClick={() => setIsOpen(!isOpen)}/>
+                                GALLERY WEBSITE
+                            </a></Link>
+                    </Mobile>
+                    {isOpen && <HamburgerMenu dropdownItems={dropdownItems}/>}
                     <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
                         <ul className="navbar-nav">
                             <li className="nav-item">
                                 <a className="nav-link active" href={paths.home}>HOME</a>
                             </li>
                             <li className="nav-item">
-                                <DropdownMenu dropdownName={"Studio Category"}
-                                              dropdownItems={[
-                                                  {
-                                                      name: 'Action',
-                                                      url: "",
-                                                  },
-                                                  {
-                                                      name: 'Another action',
-                                                      url: "",
-                                                  },
-                                                  {
-                                                      name: 'Something else here',
-                                                      url: "",
-                                                  },
-                                              ]}/>
+                                <DropdownMenu
+                                    dropdownName={"Studio Category"}
+                                    dropdownItems={dropdownItems.studioCategories}/>
                             </li>
                             <li className="nav-item">
-                                <DropdownMenu dropdownName={"Collection Management"}
-                                              dropdownItems={[
-                                                  {
-                                                      name: 'Create Collection',
-                                                      url: paths.createCollection,
-                                                  },
-                                                  {
-                                                      name: 'List Collections',
-                                                      url: paths.collectionList,
-                                                  },
-                                                  {
-                                                      name: 'Something else here',
-                                                      url: "",
-                                                  },
-                                              ]}/>
+                                <DropdownMenu
+                                    dropdownName={"Collection Management"}
+                                    dropdownItems={dropdownItems.collections}/>
                             </li>
                         </ul>
                     </div>
                     <div>
-                        {!isAuthenticated ?
-                            <Link href={paths.signIn}>
-                                <a className="nav-link" href="#">Sign In</a>
-                            </Link>
+                        {!isOpen ?
+                            !isAuthenticated ?
+                                <Link href={paths.signIn}>
+                                    <a className="nav-link px-0" href="#">Sign In</a>
+                                </Link>
+                                :
+                                <DropdownMenu
+                                    dropdownName={`${user.firstName} ${user.lastName}`}
+                                    dropdownItems={dropdownItems.account}/>
                             :
-                            <DropdownMenu dropdownName={`${user.firstName} ${user.lastName}`}
-                                          dropdownItems={[
-                                              {
-                                                  name: 'Action',
-                                                  url: "",
-                                              },
-                                              {
-                                                  name: 'Another action',
-                                                  url: "",
-                                              },
-                                              {
-                                                  name: 'Logout',
-                                                  url: "",
-                                                  onClick: onLogout,
-                                              },
-                                          ]}/>
-                        }
+                            <></>}
                     </div>
                 </div>
             </nav>

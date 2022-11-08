@@ -36,23 +36,12 @@ const customStyles: React.FC = (isError: any, outsideStyles = {}): any => {
         loadingIndicator,
         indicatorsContainer,
         clearIndicator,
+        menu,
         ...rest
     } = outsideStyles
 
     const mergeStyles = (outsideStyle: any, insideStyle: any) => (provided: any, state: any) => {
-        // console.log(mergeStyles(control, ({isFocused}: any) => ({
-        //     border: 'none',
-        //     borderRadius: 0,
-        //     borderBottom: '1px solid #E5E5E5',
-        //     //white color get from root
-        //     background: 'var(--white)',
-        //     borderBottomColor: isError ? '#f33060' : isFocused ? '#0F62F9' : '#E5E5E5',
-        //     boxShadow: 'none',
-        //
-        //     '&:hover': {
-        //         borderBottomColor: isError ? '#f33060' : isFocused ? '#0F62F9' : '#E5E5E5',
-        //     }
-        // })));
+        console.log({...insideStyle(state)});
         return {
             ...provided,
             ...insideStyle(state),
@@ -102,6 +91,9 @@ const customStyles: React.FC = (isError: any, outsideStyles = {}): any => {
             '> *': {
                 padding: '8px 5px !important'
             }
+        })),
+        menu: mergeStyles(menu, () => ({
+            backgroundColor: 'var(--white)',
         })),
         clearIndicator: mergeStyles(clearIndicator, ({isFocused}: any) => ({
             stroke: isFocused ? '#adadad' : '#E5E5E5',

@@ -28,7 +28,7 @@ const InputTextField: React.FC<InputTextFieldType> = ({
                                                           label,
                                                           placeholder,
                                                           disabled,
-                                                          className,
+                                                          className= '',
                                                           type = 'text',
                                                           onChange,
                                                           hideErrorMessage,
@@ -77,7 +77,7 @@ const InputTextField: React.FC<InputTextFieldType> = ({
                     disabled={disabled}
                     autoComplete={autoComplete}
                     className={classNames({
-                        [`${className}`]: !!className,
+                        [className]: !!className,
                         [styles.hasIconLeft]: !!iconLeft,
                         [styles.hasIconRight]: !!iconRight
                     })}

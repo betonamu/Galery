@@ -23,4 +23,12 @@
             font-size: 90px !important;
         }
     }
+
+    .submit {
+        color: blue;
+        transition: color 1s linear;
+        &:hover {
+            color: red;
+        }
+    }
 }

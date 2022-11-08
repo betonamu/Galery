@@ -8,6 +8,13 @@
     z-index: 1;
     background-color: var(--bs-dark-rgb) !important;
 
+    [class~="navbar-expand-lg"] {
+        padding: 0 !important;
+        @include largeScreen {
+            padding: 8px;
+        }
+    }
+
     [class~="dropdown"] {
         &:hover {
             [class="dropdown-menu"] {
@@ -26,7 +33,7 @@
         }
     }
 
-    [class="nav-link"]:last-child {
-        padding: 0.5rem 0 !important;
-    }
+    //[class="nav-link"]:last-child {
+    //    padding: 0.5rem 0 !important;
+    //}
 }

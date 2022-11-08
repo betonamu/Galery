@@ -18,8 +18,14 @@ const Footer = () => {
                         <a className="me-2" target="_blank" href="https://github.com/betonamu"><GithubIcon/></a>
                     </div>
                 </div>
+                <div className="d-flex align-items-center justify-content-center">
+                    Phone:&nbsp;<a href='tel:0981843732' className='text-decoration-none'>0981843732</a>
+                </div>
+                <div className="d-flex align-items-center justify-content-center mb-2">
+                    Email:&nbsp;<a className='text-decoration-none' href='mailto:nguyencongquoc0904@gmail.com'>Nguyencongquoc0904@gmail.com</a>
+                </div>
                 <div className={styles.copyRight}>
-                    © {new Date().getFullYear()} - Gallery - Design by Nguyen Cong Quoc
+                    © {new Date().getFullYear()} - Design & Code by Nguyen Cong Quoc
                 </div>
             </div>
         </div>

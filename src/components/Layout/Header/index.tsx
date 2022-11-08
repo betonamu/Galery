@@ -107,7 +107,7 @@ const Header = () => {
                                     fill={isDarkMode ? "white" : ''}
                                     className="me-2"
                                     onClick={() => setIsOpen(!isOpen)}/>
-                                GALLERY WEBSITE
+                                MY PROFILE
                             </a></Link>
                     </Mobile>
                     {isOpen && <HamburgerMenu dropdownItems={dropdownItems}/>}
@@ -117,14 +117,7 @@ const Header = () => {
                                 <a className="nav-link active" href={paths.home}>HOME</a>
                             </li>
                             <li className="nav-item">
-                                <DropdownMenu
-                                    dropdownName={"Studio Category"}
-                                    dropdownItems={dropdownItems.studioCategories}/>
-                            </li>
-                            <li className="nav-item">
-                                <DropdownMenu
-                                    dropdownName={"Collection Management"}
-                                    dropdownItems={dropdownItems.collections}/>
+                                <a className="nav-link active" href={paths.home}>ABOUT ME</a>
                             </li>
                         </ul>
                     </div>

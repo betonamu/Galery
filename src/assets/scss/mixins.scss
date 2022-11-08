@@ -18,6 +18,12 @@
     }
 }
 
+@mixin darkMode {
+    [data-theme="dark"] {
+        @content;
+    }
+}
+
 @mixin button {
     outline: none;
     cursor: pointer;

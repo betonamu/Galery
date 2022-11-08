@@ -23,7 +23,6 @@ const NavigationBottom = () => {
     const {user, isAuthenticated} = useAuth();
     const {push, pathname} = useRouter();
     const [tabActive, setTabActive] = useState(navigationTab.HOME);
-    const [ngu, setNgu] = useState<any>();
 
     const navigationItems = [
         {
@@ -65,10 +64,9 @@ const NavigationBottom = () => {
         if (!isAuthenticated && tabItem.requiredLogin) {
             push(paths.signIn).then();
         } else {
-           // push(tabItem.url).then();
+           push(tabItem.url).then();
         }
          setTabActive(tabItem.value);
-        setNgu('')
     }
 
     return (

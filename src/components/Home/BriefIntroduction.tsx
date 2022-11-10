@@ -22,8 +22,12 @@ const BriefIntroduction = () => {
                     <h3>FRONTEND DEVELOPER</h3>
                 </div>
             </div>
+            <div className='alert alert-danger mt-5'>
+                <h5 className='text-danger text-center'>IT'S AMAZING TO SEE RESPONSIVE ON MOBILE DEVICES</h5>
+                <h5 className='text-danger text-center'>SET WEBSITE THEME BASED ON OS THEME</h5>
+            </div>
             <div className={styles.technology}>
-                <h3>TECHNOLOGY</h3>
+                <h3>LANGUAGE, FRAMEWORK, LIBRARY</h3>
 
                 <div className={styles.technologyContent}>
                     <div className={styles.card}>
@@ -60,7 +64,7 @@ const BriefIntroduction = () => {
             </div>
 
             <div className={styles.technology}>
-                <h3>UI LIBRARY USED</h3>
+                <h3>UI LIBRARY COMPONENT</h3>
 
                 <div className={styles.technologyContent}>
                     <div className={styles.card}>
@@ -84,7 +88,7 @@ const BriefIntroduction = () => {
                     <div className={styles.card}>
                         <div className={styles.cardBody}>
                             <div>
-                                <h2> Next JS</h2>
+                                <h2> Bootstrap</h2>
                                 <h4>Have 2 years experience with Next JS</h4>
                                 <p>Server side render, dynamic route</p>
                             </div>
@@ -106,6 +110,7 @@ const BriefIntroduction = () => {
 
                 </div>
             </div>
+
         </div>
     );
 }

@@ -21,26 +21,31 @@ const useDarkMode = (): DarkModeReturnType => {
         if (dataTheme === THEME_MODE.DARK) {
             onSetDataTheme(THEME_MODE.DARK, true);
         } else {
-            onSetDataTheme();
+            onSetDataTheme(THEME_MODE.LIGHT);
         }
     }
 
     const onSwitchTheme = (checked: boolean) => {
-        let nextTheme = '';
-        let _isDarkMode: boolean;
+        let nextTheme = THEME_MODE.LIGHT;
+        let _isDarkMode: boolean = false;
         if (checked) {
             nextTheme = THEME_MODE.DARK;
             _isDarkMode = true;
-        } else {
-            _isDarkMode = false;
         }
         onSetDataTheme(nextTheme, _isDarkMode);
     }
 
     useLayoutEffect(() => {
         //get init theme from localStorage and set when the first time page loaded.
+        //if not, set init by tracking os theme. localStorage is priority
         const dataTheme = getStringData(storageKeys.DATA_THEME);
-        onSetDataThemeIntoDOM(dataTheme);
+        if (dataTheme) {
+            onSetDataThemeIntoDOM(dataTheme);
+        } else {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                onSetDataThemeIntoDOM(THEME_MODE.DARK);
+            }
+        }
 
         //handle event listener to tracking OS theme.
         const darkModeTracking = window.matchMedia('(prefers-color-scheme: dark)');

@@ -37,7 +37,7 @@ export const metaDefaults = ({origin, href}: any) => ({
     description: "Nothing",
     // image: `${ssrMode ? origin : window.location.origin}/images/thumbnail-seo.png`,
     image: '',
-    title: "Xiuren Gallery",
+    title: "NCQ Profile",
     type: "website",
     url: ssrMode ? href : window.location.origin,
 });

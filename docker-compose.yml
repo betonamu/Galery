@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  #named the app
+  client:
+    build:
+      #specify folder contains Dockerfile
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      # host-port:docker-port
+      - "3002:3000"
+    container_name: "gallery-client"
+    volumes:
+      - .:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
+      - next-build:/usr/src/app/.next
+
+volumes:
+  node_modules:
+  next-build:

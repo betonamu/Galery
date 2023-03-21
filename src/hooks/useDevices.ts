@@ -16,7 +16,6 @@ const useDevices = () => {
 
     const handleResize = (e : any) => {
         setDevices(calcDevices(e.target.innerWidth));
-        console.log(e.target.innerWidth);
     }
 
     useEffect(() => {

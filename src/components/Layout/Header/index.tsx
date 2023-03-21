@@ -15,7 +15,6 @@ import DropdownMenu from "@components/Common/DropdownMenu";
 import HamburgerIcon from "@assets/icons/hamburger-cat-menu.svg";
 
 import styles from "./Header.module.scss";
-import {useOutsideClick} from "@hooks/useOutsideClick";
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -24,7 +23,6 @@ const Header = () => {
     const {onSwitchTheme, isDarkMode} = useDarkMode();
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    // const ref = useOutsideClick(() => setIsOpen(false), isOpen);
 
     const onLogout = () => {
         dispatch(accountActions.logout({

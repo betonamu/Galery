@@ -24,7 +24,7 @@ const BriefIntroduction = () => {
             </div>
             <div className='alert alert-danger mt-5'>
                 <h5 className='text-danger text-center'>IT'S AMAZING TO SEE RESPONSIVE ON MOBILE DEVICES</h5>
-                <h5 className='text-danger text-center'>SET WEBSITE THEME BASED ON OS THEME</h5>
+                <h5 className='text-danger text-center'>SET WEBSITE THEME BASED ON OS THEME1</h5>
             </div>
             <div className={styles.technology}>
                 <h3>LANGUAGE, FRAMEWORK, LIBRARY</h3>
